@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react";
 import Link from "next/link";
+import Image from "next/image";
 import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import { Menu, X } from "lucide-react";
@@ -47,12 +48,13 @@ export default function Navbar() {
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
           <Link href="/" className="flex items-center gap-2 group">
-            <span className="text-2xl md:text-3xl font-serif font-bold tracking-tight text-white group-hover:text-ranczo-terracotta transition-colors duration-300">
-              Ranczo
-            </span>
-            <span className="text-2xl md:text-3xl font-serif font-light text-ranczo-terracotta">
-              44
-            </span>
+            <Image 
+              src="/logo.jpg" 
+              alt="Ranczo 44 Logo" 
+              width={160} 
+              height={60} 
+              className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover shadow-sm transition-transform duration-300 group-hover:scale-105"
+            />
           </Link>
 
           {/* Desktop nav */}

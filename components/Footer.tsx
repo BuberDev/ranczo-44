@@ -1,6 +1,7 @@
 "use client";
 
 import Link from "next/link";
+import Image from "next/image";
 import { MapPin, Phone, Mail } from "lucide-react";
 
 const quickLinks = [
@@ -36,12 +37,13 @@ export default function Footer() {
           {/* Brand */}
           <div className="lg:col-span-1">
             <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
-              <span className="text-2xl font-serif font-bold tracking-tight text-white group-hover:text-ranczo-terracotta transition-colors">
-                Ranczo
-              </span>
-              <span className="text-2xl font-serif font-light text-ranczo-terracotta">
-                44
-              </span>
+              <Image 
+                src="/logo.jpg" 
+                alt="Ranczo 44 Logo" 
+                width={160} 
+                height={60} 
+                className="h-12 w-12 rounded-full object-cover shadow-sm transition-transform duration-300 group-hover:scale-105"
+              />
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
               Wyjątkowe miejsce w Beskidzie Niskim. Znajdź spokój, dziką naturę i prawdziwy odpoczynek z dala od zgiełku miasta.
