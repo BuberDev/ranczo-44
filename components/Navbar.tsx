@@ -76,7 +76,7 @@ export default function Navbar() {
             ))}
             <li>
               <Link
-                href="/kontakt"
+                href="/rezerwacja"
                 className="ml-4 px-6 py-2.5 bg-ranczo-terracotta text-white text-sm font-semibold rounded-full hover:bg-ranczo-terracotta/80 transition-all duration-300 hover:shadow-lg hover:shadow-ranczo-terracotta/25"
               >
                 Zarezerwuj
@@ -124,7 +124,7 @@ export default function Navbar() {
                 </Link>
               ))}
               <Link
-                href="/kontakt"
+                href="/rezerwacja"
                 onClick={() => setMobileOpen(false)}
                 className="mt-4 px-8 py-3 bg-ranczo-terracotta text-white font-semibold rounded-full text-lg block text-center"
               >

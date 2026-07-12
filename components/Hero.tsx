@@ -158,7 +158,7 @@ export default function Hero() {
           className="mt-10 flex flex-col sm:flex-row gap-4"
         >
           <a
-            href="#rezerwacja"
+            href="/rezerwacja"
             className="px-8 py-3.5 bg-ranczo-terracotta text-white font-semibold rounded-full hover:bg-ranczo-terracotta/85 transition-all duration-300 hover:shadow-xl hover:shadow-ranczo-terracotta/20 hover:-translate-y-0.5"
           >
             Zarezerwuj pobyt
