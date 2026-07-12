@@ -1,14 +1,63 @@
 "use client";
 
-import { useEffect, useRef } from "react";
+import { useEffect, useRef, useState } from "react";
 import Image from "next/image";
-import { motion } from "framer-motion";
+import { motion, AnimatePresence } from "framer-motion";
 import { ChevronDown } from "lucide-react";
+
+const backgroundImages = [
+  "/photos_ranczo_44/_MG_1076.jpeg",
+  "/photos_ranczo_44/_MG_1121.jpeg",
+  "/photos_ranczo_44/_MG_0338.jpeg",
+  "/photos_ranczo_44/_MG_0339.jpeg",
+  "/photos_ranczo_44/IMG_4324.JPG",
+  "/photos_ranczo_44/IMG_4333.JPG",
+  "/photos_ranczo_44/IMG_4334.JPG",
+  "/photos_ranczo_44/IMG_4337.JPG",
+  "/photos_ranczo_44/IMG_4340.JPG",
+  "/photos_ranczo_44/IMG_4341.JPG",
+  "/photos_ranczo_44/IMG_4342.JPG",
+  "/photos_ranczo_44/IMG_4352.JPG",
+  "/photos_ranczo_44/IMG_4368.JPG",
+  "/photos_ranczo_44/IMG_4369.JPG",
+  "/photos_ranczo_44/IMG_4370.JPG",
+  "/photos_ranczo_44/IMG_4372.JPG",
+  "/photos_ranczo_44/image00063.jpeg",
+  "/photos_ranczo_44/image00064.jpeg",
+  "/photos_ranczo_44/image00065.jpeg",
+  "/photos_ranczo_44/image00066.jpeg",
+  "/photos_ranczo_44/image00067.jpeg",
+  "/photos_ranczo_44/image00068.jpeg",
+  "/photos_ranczo_44/image00069.jpeg",
+  "/photos_ranczo_44/image00070.jpeg",
+  "/photos_ranczo_44/image00071.jpeg",
+  "/photos_ranczo_44/image00072.jpeg",
+  "/photos_ranczo_44/image00073.jpeg",
+  "/photos_ranczo_44/image00074.jpeg",
+  "/photos_ranczo_44/image00075.jpeg",
+  "/photos_ranczo_44/image00076.jpeg",
+  "/photos_ranczo_44/image00077.jpeg",
+  "/photos_ranczo_44/image00080.jpeg",
+  "/photos_ranczo_44/image00081.jpeg",
+  "/photos_ranczo_44/image00082.jpeg",
+  "/photos_ranczo_44/image00083.jpeg",
+  "/photos_ranczo_44/image00084.jpeg",
+  "/photos_ranczo_44/image00085.jpeg",
+  "/photos_ranczo_44/image00086.jpeg",
+  "/photos_ranczo_44/image00087.jpeg",
+  "/photos_ranczo_44/image00088.jpeg",
+  "/photos_ranczo_44/image00089.jpeg",
+  "/photos_ranczo_44/image00090.jpeg",
+  "/photos_ranczo_44/image00091.jpeg",
+  "/photos_ranczo_44/image00092.jpeg",
+];
 
 export default function Hero() {
   const parallaxRef = useRef<HTMLDivElement>(null);
+  const [currentImageIndex, setCurrentImageIndex] = useState(0);
 
   useEffect(() => {
+    // Parallax effect
     const onScroll = () => {
       if (parallaxRef.current) {
         const scrollY = window.scrollY;
@@ -16,30 +65,50 @@ export default function Hero() {
       }
     };
     window.addEventListener("scroll", onScroll, { passive: true });
-    return () => window.removeEventListener("scroll", onScroll);
+    
+    // Background slider interval
+    const interval = setInterval(() => {
+      setCurrentImageIndex((prev) => (prev + 1) % backgroundImages.length);
+    }, 6000); // Zmiana co 6 sekund
+    
+    return () => {
+      window.removeEventListener("scroll", onScroll);
+      clearInterval(interval);
+    };
   }, []);
 
   return (
     <section id="hero" className="relative h-screen min-h-[700px] overflow-hidden">
-      {/* Background image with parallax */}
+      {/* Background image slider with parallax */}
       <div ref={parallaxRef} className="absolute inset-0 -top-20 -bottom-20">
-        <Image
-          src="/photos_ranczo_44/_MG_1076.jpeg"
-          alt="Ranczo 44 — Beskid Niski, domki w zimowej scenerii"
-          fill
-          className="object-cover"
-          quality={85}
-          sizes="100vw"
-          priority
-        />
+        <AnimatePresence initial={false}>
+          <motion.div
+            key={currentImageIndex}
+            initial={{ opacity: 0, x: 100 }}
+            animate={{ opacity: 1, x: 0 }}
+            exit={{ opacity: 0, x: -100 }}
+            transition={{ duration: 1.5, ease: [0.33, 1, 0.68, 1] }}
+            className="absolute inset-0"
+          >
+            <Image
+              src={backgroundImages[currentImageIndex]}
+              alt="Ranczo 44 — Beskid Niski"
+              fill
+              className="object-cover"
+              quality={85}
+              sizes="100vw"
+              priority
+            />
+          </motion.div>
+        </AnimatePresence>
       </div>
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/60 via-ranczo-charcoal/30 to-ranczo-charcoal/70" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ranczo-charcoal/40 to-transparent" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/60 via-ranczo-charcoal/30 to-ranczo-charcoal/70 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ranczo-charcoal/40 to-transparent z-10" />
 
       {/* Content */}
-      <div className="relative z-10 h-full flex flex-col items-center justify-center px-6 text-center">
+      <div className="relative z-20 h-full flex flex-col items-center justify-center px-6 text-center">
         {/* Decorative line */}
         <motion.div
           initial={{ scaleX: 0 }}
