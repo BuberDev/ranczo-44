@@ -10,6 +10,7 @@ import { Menu, X } from "lucide-react";
 const navLinks = [
   { label: "O nas", href: "/o-nas" },
   { label: "Atrakcje", href: "/atrakcje" },
+  { label: "Wydarzenia", href: "/wydarzenia" },
   { label: "Domki", href: "/domki" },
   { label: "Galeria", href: "/galeria" },
   { label: "Kontakt", href: "/kontakt" },

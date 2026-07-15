@@ -1,21 +1,23 @@
 "use client";
 
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Calendar, Users, Home, ArrowRight, CheckCircle, Loader2, Mail, Phone, User } from "lucide-react";
-
-const cabins = [
-  { id: "1", name: "Domek 1 – Mustang", capacity: "do 4 osób" },
-  { id: "2", name: "Domek 2 – Apache", capacity: "do 4 osób" },
-  { id: "3", name: "Domek 3 – Sioux", capacity: "do 6 osób" },
-  { id: "4", name: "Domek 4 – Comanche", capacity: "do 6 osób" },
-];
+import { CABINS as cabins } from "@/lib/cabins";
 
 type FormStep = "dates" | "details" | "success";
+
+type AvailabilityMap = Record<string, { start: string; end: string }[]>;
+
+function rangesOverlap(aStart: string, aEnd: string, bStart: string, bEnd: string): boolean {
+  return aStart < bEnd && bStart < aEnd;
+}
 
 export default function BookingForm() {
   const [step, setStep] = useState<FormStep>("dates");
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [availability, setAvailability] = useState<AvailabilityMap>({});
+  const [dateError, setDateError] = useState<string | null>(null);
   const [form, setForm] = useState({
     checkin: "",
     checkout: "",
@@ -27,12 +29,41 @@ export default function BookingForm() {
     message: "",
   });
 
+  useEffect(() => {
+    fetch("/api/availability")
+      .then((res) => (res.ok ? res.json() : null))
+      .then((data) => {
+        if (data?.availability) setAvailability(data.availability);
+      })
+      .catch(() => {
+        // Brak dostępu do rejestru terminów — formularz działa dalej, bez blokady dat.
+      });
+  }, []);
+
   const handleChange = (e: React.ChangeEvent<HTMLInputElement | HTMLSelectElement | HTMLTextAreaElement>) => {
     setForm(prev => ({ ...prev, [e.target.name]: e.target.value }));
+    setDateError(null);
   };
 
   const handleNextStep = () => {
-    if (step === "dates") setStep("details");
+    if (step !== "dates") return;
+
+    if (form.checkin && form.checkout) {
+      const cabinIds = form.cabin ? [form.cabin] : cabins.map((c) => c.id);
+      const hasFreeCabin = cabinIds.some(
+        (id) => !(availability[id] ?? []).some((r) => rangesOverlap(form.checkin, form.checkout, r.start, r.end))
+      );
+      if (!hasFreeCabin) {
+        setDateError(
+          form.cabin
+            ? "Wybrany domek jest już zajęty w tym terminie. Wybierz inne daty lub inny domek."
+            : "Wszystkie domki są zajęte w tym terminie. Wybierz inne daty."
+        );
+        return;
+      }
+    }
+
+    setStep("details");
   };
 
   const handleSubmit = async (e: React.FormEvent) => {
@@ -213,6 +244,12 @@ export default function BookingForm() {
                     </select>
                   </div>
                 </div>
+
+                {dateError && (
+                  <p className="mt-6 text-sm text-red-400 bg-red-400/10 border border-red-400/20 rounded-xl px-4 py-3">
+                    {dateError}
+                  </p>
+                )}
 
                 {/* CTA */}
                 <div className="mt-10 flex justify-end">
