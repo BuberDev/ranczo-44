@@ -5,6 +5,8 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
+const heroVideoSrc = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
+
 function subscribeToReducedMotion(callback: () => void) {
   const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
   mediaQuery.addEventListener("change", callback);
@@ -42,7 +44,7 @@ export default function Hero() {
     <section id="hero" className="relative h-screen min-h-[700px] overflow-hidden">
       {/* Wideo tła z parallaxą; przy prefers-reduced-motion pokazujemy statyczny poster */}
       <div ref={parallaxRef} className="absolute inset-0 -top-20 -bottom-20">
-        {reducedMotion ? (
+        {reducedMotion || !heroVideoSrc ? (
           <Image
             src="/videos/hero-poster.jpg"
             alt="Ranczo 44 — Beskid Niski"
@@ -62,7 +64,7 @@ export default function Hero() {
             className="absolute inset-0 w-full h-full object-cover"
             aria-label="Ranczo 44 — Beskid Niski"
           >
-            <source src="/videos/hero-combined.mp4" type="video/mp4" />
+            <source src={heroVideoSrc} type="video/mp4" />
           </video>
         )}
       </div>
