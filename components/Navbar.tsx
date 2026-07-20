@@ -22,6 +22,7 @@ export default function Navbar() {
   const pathname = usePathname();
   
   const isHomePage = pathname === "/";
+  const isAdminPage = pathname?.startsWith("/admin");
 
   useEffect(() => {
     const onScroll = () => setScrolled(window.scrollY > 60);
@@ -30,6 +31,8 @@ export default function Navbar() {
     onScroll();
     return () => window.removeEventListener("scroll", onScroll);
   }, []);
+
+  if (isAdminPage) return null;
 
   // Determine if navbar should be solid based on scroll or if it's a subpage
   const isSolid = scrolled || !isHomePage;

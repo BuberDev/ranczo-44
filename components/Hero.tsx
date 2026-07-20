@@ -62,7 +62,7 @@ export default function Hero() {
             className="absolute inset-0 w-full h-full object-cover"
             aria-label="Ranczo 44 — Beskid Niski"
           >
-            <source src="/videos/hero_2.mp4" type="video/mp4" />
+            <source src="/videos/hero-combined.mp4" type="video/mp4" />
           </video>
         )}
       </div>
