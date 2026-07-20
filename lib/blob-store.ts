@@ -1,13 +1,16 @@
 import "server-only";
 import { get, put } from "@vercel/blob";
 
-function hasBlobToken(): boolean {
-  return Boolean(process.env.BLOB_READ_WRITE_TOKEN);
+function hasBlobCredentials(): boolean {
+  return Boolean(
+    process.env.BLOB_READ_WRITE_TOKEN ||
+      (process.env.VERCEL_OIDC_TOKEN && process.env.BLOB_STORE_ID)
+  );
 }
 
 export async function readJson<T>(pathname: string): Promise<T | null> {
-  if (!hasBlobToken()) {
-    console.warn(`[blob-store] BLOB_READ_WRITE_TOKEN nie jest ustawiony — pomijam odczyt ${pathname}`);
+  if (!hasBlobCredentials()) {
+    console.warn(`[blob-store] Brak credentials do Vercel Blob — pomijam odczyt ${pathname}`);
     return null;
   }
 
@@ -23,8 +26,8 @@ export async function readJson<T>(pathname: string): Promise<T | null> {
 }
 
 export async function writeJson(pathname: string, data: unknown): Promise<void> {
-  if (!hasBlobToken()) {
-    console.warn(`[blob-store] BLOB_READ_WRITE_TOKEN nie jest ustawiony — pomijam zapis ${pathname}`);
+  if (!hasBlobCredentials()) {
+    console.warn(`[blob-store] Brak credentials do Vercel Blob — pomijam zapis ${pathname}`);
     return;
   }
 
