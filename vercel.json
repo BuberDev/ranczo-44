@@ -1,7 +1,7 @@
 {
   "crons": [
     {
-      "path": "/api/cron/sync-slowhop",
+      "path": "/api/cron/sync-calendars",
       "schedule": "0 3 * * *"
     }
   ]

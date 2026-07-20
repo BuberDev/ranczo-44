@@ -16,6 +16,7 @@ export const dynamic = "force-dynamic";
 const SOURCE_LABEL: Record<string, string> = {
   direct: "bezpośrednio",
   slowhop: "Slowhop",
+  alohacamp: "Alohacamp",
   manual: "blokada ręczna",
 };
 
@@ -112,7 +113,7 @@ export default async function AdminPage() {
                     rel="noreferrer"
                     className="text-xs text-ranczo-terracotta underline shrink-0"
                   >
-                    link .ics do Slowhopa
+                    link .ics do Slowhopa / Alohacamp
                   </a>
                 </div>
 
@@ -123,7 +124,7 @@ export default async function AdminPage() {
                         {b.start} → {b.end}{" "}
                         <span className="text-white/40">({SOURCE_LABEL[b.source] ?? b.source})</span>
                       </span>
-                      {b.source !== "slowhop" && (
+                      {(b.source === "direct" || b.source === "manual") && (
                         <form action={removeBookingAction}>
                           <input type="hidden" name="cabinId" value={cabin.id} />
                           <input type="hidden" name="bookingId" value={b.id} />

@@ -14,8 +14,10 @@ export async function GET(
   }
 
   const bookings = await getCabinBookings(cabinId);
-  // Nie eksportujemy z powrotem terminów zaimportowanych ze Slowhopa — to pętla, którą Slowhop już sam obsługuje.
-  const exportable = bookings.filter((b) => b.source !== "slowhop");
+  // Eksportujemy tylko to, co powstało u nas (bezpośrednio lub ręczna blokada) — nie odsyłamy
+  // z powrotem terminów zaimportowanych z zewnętrznych platform (Slowhop, Alohacamp...), bo to
+  // pętla, którą te platformy już same obsługują.
+  const exportable = bookings.filter((b) => b.source === "direct" || b.source === "manual");
   const ics = generateIcs(`Ranczo 44 – ${cabin.name}`, exportable);
 
   return new NextResponse(ics, {

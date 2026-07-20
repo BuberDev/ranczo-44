@@ -2,7 +2,8 @@ import "server-only";
 import { readJson, writeJson } from "./blob-store";
 import { CABINS } from "./cabins";
 
-export type BookingSource = "direct" | "slowhop" | "manual";
+export type BookingSource = "direct" | "slowhop" | "alohacamp" | "manual";
+export type ExternalBookingSource = Extract<BookingSource, "slowhop" | "alohacamp">;
 
 export interface BookingRange {
   id: string;
@@ -50,17 +51,19 @@ export async function getAllCabinBookings(): Promise<Record<string, BookingRange
   return Object.fromEntries(entries);
 }
 
-/** Zastępuje terminy pochodzące ze Slowhopa najnowszym importem, zachowując rezerwacje bezpośrednie i ręczne blokady. */
-export async function replaceSlowhopBookings(
+/** Zastępuje terminy pochodzące z danej zewnętrznej platformy (Slowhop, Alohacamp...) najnowszym
+ * importem, zachowując rezerwacje bezpośrednie, ręczne blokady i terminy z innych platform. */
+export async function replaceExternalBookings(
   cabinId: string,
-  slowhopRanges: { start: string; end: string; note?: string }[]
+  source: ExternalBookingSource,
+  ranges: { start: string; end: string; note?: string }[]
 ): Promise<void> {
   const existing = await getCabinBookings(cabinId);
-  const kept = existing.filter((b) => b.source !== "slowhop");
+  const kept = existing.filter((b) => b.source !== source);
   const now = new Date().toISOString();
-  const fresh: BookingRange[] = slowhopRanges.map((r, index) => ({
-    id: `slowhop-${cabinId}-${r.start}-${index}`,
-    source: "slowhop",
+  const fresh: BookingRange[] = ranges.map((r, index) => ({
+    id: `${source}-${cabinId}-${r.start}-${index}`,
+    source,
     createdAt: now,
     ...r,
   }));
