@@ -27,8 +27,10 @@ export async function readJson<T>(pathname: string): Promise<T | null> {
 
 export async function writeJson(pathname: string, data: unknown): Promise<void> {
   if (!hasBlobCredentials()) {
-    console.warn(`[blob-store] Brak credentials do Vercel Blob — pomijam zapis ${pathname}`);
-    return;
+    // W przeciwieństwie do readJson (gdzie brak danych jest nieszkodliwy — strona po prostu
+    // pokaże pusty stan), cichy brak zapisu jest niebezpieczny: wywołujący myśli, że operacja
+    // się powiodła, a dane nigdzie nie trafiają. Dlatego tu rzucamy błąd zamiast go połykać.
+    throw new Error(`[blob-store] Brak credentials do Vercel Blob — nie można zapisać ${pathname}`);
   }
 
   await put(pathname, JSON.stringify(data, null, 2), {
