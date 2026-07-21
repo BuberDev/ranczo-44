@@ -30,6 +30,7 @@ export interface PendingInquiry {
 
 const cabinBookingsPath = (cabinId: string) => `bookings/cabin-${cabinId}.json`;
 const inquiriesPath = "bookings/pending-inquiries.json";
+const lastSyncPath = "bookings/last-sync.json";
 
 export function rangesOverlap(aStart: string, aEnd: string, bStart: string, bEnd: string): boolean {
   return aStart < bEnd && bStart < aEnd;
@@ -123,6 +124,15 @@ export async function addPendingInquiry(
     status: "pending",
   };
   await setPendingInquiries([...existing, inquiry]);
+}
+
+export async function getLastSyncedAt(): Promise<string | null> {
+  const data = await readJson<{ syncedAt: string }>(lastSyncPath);
+  return data?.syncedAt ?? null;
+}
+
+export async function setLastSyncedAt(syncedAt: string): Promise<void> {
+  await writeJson(lastSyncPath, { syncedAt });
 }
 
 export async function updateInquiryStatus(

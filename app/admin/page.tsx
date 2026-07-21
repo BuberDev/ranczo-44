@@ -15,6 +15,7 @@ import {
   Minus,
   PanelLeft,
   Plus,
+  RefreshCw,
   ShieldCheck,
   Trash2,
   Users,
@@ -24,6 +25,7 @@ import {
 import {
   getPendingInquiries,
   getAllCabinBookings,
+  getLastSyncedAt,
   rangesOverlap,
   type BookingRange,
 } from "@/lib/bookings";
@@ -36,6 +38,7 @@ import {
   removeBookingAction,
 } from "@/app/actions/admin-bookings";
 import { logoutAdmin } from "@/app/actions/admin-auth";
+import { syncCalendarsNow } from "@/app/actions/admin-sync";
 
 // Panel pokazuje na żywo stan rezerwacji i jest chroniony sesją.
 export const dynamic = "force-dynamic";
@@ -67,6 +70,15 @@ function formatShortDate(date: string) {
     day: "2-digit",
     month: "short",
   }).format(new Date(`${date}T12:00:00`));
+}
+
+function formatDateTime(isoDate: string) {
+  return new Intl.DateTimeFormat("pl-PL", {
+    day: "2-digit",
+    month: "short",
+    hour: "2-digit",
+    minute: "2-digit",
+  }).format(new Date(isoDate));
 }
 
 function daysBetween(start: string, end: string) {
@@ -191,9 +203,10 @@ export default async function AdminPage() {
     redirect("/admin/login");
   }
 
-  const [inquiries, allBookings] = await Promise.all([
+  const [inquiries, allBookings, lastSyncedAt] = await Promise.all([
     getPendingInquiries(),
     getAllCabinBookings(),
+    getLastSyncedAt(),
   ]);
 
   const today = new Date().toISOString().slice(0, 10);
@@ -418,13 +431,29 @@ export default async function AdminPage() {
               </div>
 
               <div id="sync" className="rounded-lg border border-stone-200 bg-white shadow-sm">
-                <div className="border-b border-stone-100 px-5 py-4">
-                  <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ranczo-terracotta">
-                    Synchronizacja
-                  </p>
-                  <h2 className="mt-1 text-xl font-bold text-stone-950">Kanały sprzedaży</h2>
+                <div className="flex items-center justify-between gap-4 border-b border-stone-100 px-5 py-4">
+                  <div>
+                    <p className="text-xs font-semibold uppercase tracking-[0.12em] text-ranczo-terracotta">
+                      Synchronizacja
+                    </p>
+                    <h2 className="mt-1 text-xl font-bold text-stone-950">Kanały sprzedaży</h2>
+                  </div>
+                  <form action={syncCalendarsNow}>
+                    <button
+                      type="submit"
+                      className="inline-flex h-10 items-center gap-2 rounded-md bg-ranczo-terracotta px-4 text-sm font-semibold text-white transition-colors hover:bg-ranczo-terracotta/85"
+                    >
+                      <RefreshCw className="h-4 w-4" />
+                      Synchronizuj teraz
+                    </button>
+                  </form>
                 </div>
                 <div className="space-y-4 p-5">
+                  <p className="text-xs text-stone-500">
+                    {lastSyncedAt
+                      ? `Ostatnia synchronizacja: ${formatDateTime(lastSyncedAt)}`
+                      : "Jeszcze nie synchronizowano ręcznie ani automatycznie."}
+                  </p>
                   {["slowhop", "alohacamp"].map((source) => {
                     const count = upcomingBookings.filter((booking) => booking.source === source).length;
                     return (
