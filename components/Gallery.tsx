@@ -27,8 +27,9 @@ export default function Gallery() {
 
   return (
     <>
-      <section id="galeria" className="relative py-24 md:py-32 bg-stone-100 overflow-hidden">
-        <div ref={ref} className="max-w-7xl mx-auto px-6">
+      <section id="galeria" className="relative py-24 md:py-32 bg-gradient-to-br from-white via-ranczo-cream to-[#eaf7e4] overflow-hidden">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_12%,_rgba(120,201,67,0.14),_transparent_34%),radial-gradient(circle_at_88%_18%,_rgba(242,106,27,0.08),_transparent_28%)] pointer-events-none" />
+        <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
           {/* Section header */}
           <motion.div
             initial={{ opacity: 0, y: 30 }}

@@ -21,7 +21,7 @@ const eventTypes = [
   {
     icon: Fence,
     title: "Aktywności z końmi i warsztaty",
-    desc: "Jazda konna, kontakt ze zwierzętami, warsztaty kowbojskie dla grup i szkół — niepowtarzalna atrakcja integracyjna w sercu natury.",
+    desc: "Jazda konna, kontakt ze zwierzętami i warsztaty terenowe dla grup oraz szkół — niepowtarzalna atrakcja integracyjna w sercu natury.",
     image: "/photos_ranczo_44/IMG_5315.JPG",
   },
 ];
@@ -31,10 +31,11 @@ export default function Events() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 md:py-32 bg-ranczo-charcoal overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-gradient-to-br from-[#0f3d24] via-ranczo-charcoal to-[#124f35] overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-ranczo-terracotta/30 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,_rgba(31,174,75,0.18),_transparent_34%),radial-gradient(circle_at_82%_20%,_rgba(242,106,27,0.14),_transparent_32%),radial-gradient(circle_at_50%_100%,_rgba(120,201,67,0.12),_transparent_38%)] pointer-events-none" />
 
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
+      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
@@ -49,7 +50,7 @@ export default function Events() {
           </h2>
           <div className="mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" />
           <p className="mt-6 max-w-lg mx-auto text-white/60 leading-relaxed">
-            Dzika natura Beskidu Niskiego i kowbojski klimat Rancza jako scenografia
+            Dzika natura Beskidu Niskiego i kameralny klimat Rancza jako scenografia
             Twojego wydarzenia — dopasowujemy przestrzeń i atrakcje do okazji.
           </p>
         </motion.div>
@@ -61,7 +62,7 @@ export default function Events() {
               initial={{ opacity: 0, y: 30 }}
               animate={inView ? { opacity: 1, y: 0 } : {}}
               transition={{ duration: 0.6, delay: 0.1 + i * 0.1 }}
-              className="group relative rounded-2xl overflow-hidden bg-white/5 border border-white/10 hover:border-ranczo-terracotta/30 transition-all duration-500 hover:-translate-y-1"
+              className="group relative rounded-2xl overflow-hidden bg-white/8 border border-white/12 shadow-xl shadow-black/10 hover:border-ranczo-terracotta/40 transition-all duration-500 hover:-translate-y-1"
             >
               <div className="relative h-48 overflow-hidden">
                 <Image
@@ -71,7 +72,7 @@ export default function Events() {
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
-                <div className="absolute inset-0 bg-gradient-to-t from-ranczo-charcoal to-transparent" />
+                <div className="absolute inset-0 bg-gradient-to-t from-ranczo-charcoal/90 via-ranczo-charcoal/20 to-transparent" />
               </div>
 
               <div className="p-6">

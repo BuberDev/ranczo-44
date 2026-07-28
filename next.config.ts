@@ -5,6 +5,9 @@ import { fileURLToPath } from "node:url";
 const projectRoot = dirname(fileURLToPath(import.meta.url));
 
 const nextConfig: NextConfig = {
+  images: {
+    qualities: [75, 90],
+  },
   turbopack: {
     root: projectRoot,
   },

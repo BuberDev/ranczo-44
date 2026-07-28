@@ -36,7 +36,7 @@ export default function Footer() {
   if (pathname?.startsWith("/admin")) return null;
 
   return (
-    <footer className="bg-ranczo-charcoal pt-20 pb-10 border-t border-white/10">
+    <footer className="bg-gradient-to-br from-[#0d321f] via-ranczo-charcoal to-[#0b4b2b] pt-20 pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6">
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
           {/* Brand */}

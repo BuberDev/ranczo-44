@@ -6,6 +6,8 @@ import { motion } from "framer-motion";
 import { ChevronDown } from "lucide-react";
 
 const heroVideoSrc = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
+const heroMediaClass =
+  "absolute inset-0 h-full w-full scale-[1.18] object-cover object-center brightness-110 contrast-105 saturate-150";
 
 function subscribeToReducedMotion(callback: () => void) {
   const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -49,8 +51,8 @@ export default function Hero() {
             src="/videos/hero-poster.jpg"
             alt="Ranczo 44 — Beskid Niski"
             fill
-            className="object-cover"
-            quality={85}
+            className={heroMediaClass}
+            quality={90}
             sizes="100vw"
             priority
           />
@@ -61,7 +63,7 @@ export default function Hero() {
             loop
             playsInline
             poster="/videos/hero-poster.jpg"
-            className="absolute inset-0 w-full h-full object-cover"
+            className={heroMediaClass}
             aria-label="Ranczo 44 — Beskid Niski"
           >
             <source src={heroVideoSrc} type="video/mp4" />
@@ -70,8 +72,8 @@ export default function Hero() {
       </div>
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/60 via-ranczo-charcoal/30 to-ranczo-charcoal/70 z-10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ranczo-charcoal/40 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/12 via-ranczo-charcoal/0 to-ranczo-charcoal/30 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ranczo-charcoal/24 via-transparent to-ranczo-charcoal/8 z-10" />
 
       {/* Content */}
       <div className="relative z-20 h-full flex flex-col items-center justify-center px-6 text-center">
@@ -98,7 +100,7 @@ export default function Hero() {
           initial={{ opacity: 0, y: 30 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 1, delay: 0.7 }}
-          className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight"
+          className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight drop-shadow-[0_4px_18px_rgba(0,0,0,0.55)]"
         >
           Ranczo{" "}
           <span className="text-ranczo-terracotta">44</span>
@@ -109,11 +111,11 @@ export default function Hero() {
           initial={{ opacity: 0, y: 20 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 1.0 }}
-          className="mt-6 max-w-xl text-lg md:text-xl text-white/80 font-light leading-relaxed"
+          className="mt-6 max-w-xl text-lg md:text-xl text-white font-medium leading-relaxed drop-shadow-[0_3px_14px_rgba(0,0,0,0.55)]"
         >
-          Wyprawa w głąb króliczej nory.
+          Wyprawa w głąb beskidzkiej natury.
           <br className="hidden sm:block" />
-          Gdzie dzika natura spotyka kowbojską fantazję.
+          Gdzie spokój, konie i las spotykają się z rodzinnym odpoczynkiem.
         </motion.p>
 
         {/* CTA buttons */}

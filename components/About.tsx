@@ -10,9 +10,9 @@ export default function About() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="o-nas" className="relative py-24 md:py-32 bg-ranczo-cream overflow-hidden">
+    <section id="o-nas" className="relative py-24 md:py-32 bg-gradient-to-br from-white via-ranczo-cream to-[#edf8e8] overflow-hidden">
       {/* Decorative background */}
-      <div className="absolute top-0 right-0 w-96 h-96 bg-ranczo-green/5 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
+      <div className="absolute top-0 right-0 w-96 h-96 bg-ranczo-green/8 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
 
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         {/* Section header */}
@@ -81,10 +81,10 @@ export default function About() {
               prowadzony z pasją przez Anię, Rafała i młodego Adasia.
             </p>
             <p className="text-base text-ranczo-charcoal/70 leading-relaxed">
-              To miejsce, gdzie kowbojska fantazja spotyka dziką naturę. Gdzie
-              poranne mgły otulają góry, a wieczorne ognisko budzi wspomnienia 
-              z dzieciństwa. Tu nie ma pośpiechu — jest za to stary Chevrolet 
-              na podjeździe, konie na pastwisku i zapach drewna z kominka.
+              To miejsce, gdzie swobodny klimat rancza spotyka dziką naturę.
+              Poranne mgły otulają góry, a wieczorne ognisko budzi wspomnienia
+              z dzieciństwa. Tu nie ma pośpiechu — są za to konie na pastwisku,
+              zielone okiennice i zapach drewna z kominka.
             </p>
             <p className="text-base text-ranczo-charcoal/70 leading-relaxed">
               Zamieszkaj w jednym z naszych drewnianych domków z kominkiem, 
@@ -104,7 +104,7 @@ export default function About() {
                   initial={{ opacity: 0, y: 20 }}
                   animate={inView ? { opacity: 1, y: 0 } : {}}
                   transition={{ duration: 0.5, delay: 0.6 + i * 0.1 }}
-                  className="flex flex-col items-center text-center p-4 rounded-xl bg-ranczo-green/5 hover:bg-ranczo-green/10 transition-colors duration-300"
+                  className="flex flex-col items-center text-center p-4 rounded-xl bg-white/70 ring-1 ring-ranczo-green/10 shadow-sm hover:bg-ranczo-green/10 transition-colors duration-300"
                 >
                   <item.icon className="w-6 h-6 text-ranczo-terracotta mb-2" />
                   <span className="text-xs font-medium text-ranczo-charcoal/70 whitespace-pre-line leading-tight">

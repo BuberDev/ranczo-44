@@ -27,7 +27,7 @@ export default function RootLayout({
   return (
     <html lang="pl" className="scroll-smooth">
       <body
-        className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-stone-50 text-stone-900 min-h-screen flex flex-col`}
+        className={`${playfair.variable} ${inter.variable} font-sans antialiased bg-ranczo-cream text-ranczo-charcoal min-h-screen flex flex-col`}
       >
         <Navbar />
         {children}

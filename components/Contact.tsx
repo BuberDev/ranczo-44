@@ -27,11 +27,12 @@ export default function Contact() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="kontakt" className="relative py-24 md:py-32 bg-ranczo-charcoal overflow-hidden">
+    <section id="kontakt" className="relative py-24 md:py-32 bg-gradient-to-br from-[#0f3d24] via-ranczo-charcoal to-[#0d5531] overflow-hidden">
       {/* Top border */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-ranczo-terracotta/30 to-transparent" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,_rgba(120,201,67,0.16),_transparent_34%),radial-gradient(circle_at_86%_12%,_rgba(242,106,27,0.12),_transparent_30%)] pointer-events-none" />
 
-      <div ref={ref} className="max-w-7xl mx-auto px-6">
+      <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section header */}
         <motion.div
           initial={{ opacity: 0, y: 30 }}

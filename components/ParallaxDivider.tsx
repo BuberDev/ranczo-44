@@ -19,7 +19,7 @@ export default function ParallaxDivider() {
           sizes="100vw"
         />
       </div>
-      <div className="absolute inset-0 bg-ranczo-charcoal/60" />
+      <div className="absolute inset-0 bg-ranczo-charcoal/28" />
 
       <div className="relative z-10 h-full flex flex-col items-center justify-center text-center px-6">
         <motion.blockquote

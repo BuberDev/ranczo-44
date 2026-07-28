@@ -46,8 +46,8 @@ export default function SubpageHero({ title, subtitle, imageSrc, className }: Su
       </motion.div>
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/85 via-ranczo-charcoal/40 to-ranczo-cream z-10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ranczo-charcoal/30 to-transparent z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/45 via-ranczo-charcoal/12 to-ranczo-cream z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ranczo-charcoal/20 to-transparent z-10" />
 
       {/* Content */}
       <motion.div
@@ -64,7 +64,7 @@ export default function SubpageHero({ title, subtitle, imageSrc, className }: Su
           initial={{ opacity: 0, y: 12 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.7, delay: 0.2 }}
-          className="text-xs md:text-sm tracking-[0.35em] uppercase text-ranczo-sand/90 font-medium mb-4"
+          className="text-xs md:text-sm tracking-[0.35em] uppercase text-ranczo-sand font-semibold mb-4 drop-shadow-[0_2px_10px_rgba(0,0,0,0.55)]"
         >
           {subtitle}
         </motion.p>
@@ -72,7 +72,7 @@ export default function SubpageHero({ title, subtitle, imageSrc, className }: Su
           initial={{ opacity: 0, y: 25 }}
           animate={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.9, delay: 0.4 }}
-          className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight drop-shadow-lg"
+          className="font-serif text-5xl sm:text-6xl md:text-7xl font-bold text-white leading-tight drop-shadow-[0_4px_18px_rgba(0,0,0,0.55)]"
         >
           {title}
         </motion.h1>

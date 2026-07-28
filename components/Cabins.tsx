@@ -7,8 +7,8 @@ import { Flame, Users, Bed, Maximize } from "lucide-react";
 
 const cabins = [
   {
-    name: "Domek Kowbojski",
-    desc: "Klimatyczny domek z drewna z werandą, kominkiem i widokiem na góry. Idealny dla par i małych rodzin.",
+    name: "Domek nr 4 – Kowbojski",
+    desc: "Klimatyczny drewniany domek z werandą, kominkiem i widokiem na góry. Idealny dla par i małych rodzin.",
     image: "/photos_ranczo_44/_MG_0338.jpeg",
     features: [
       { icon: Bed, label: "2 sypialnie" },
@@ -18,7 +18,7 @@ const cabins = [
     ],
   },
   {
-    name: "Domek Leśny",
+    name: "Domek nr 2 – Leśny",
     desc: "Przytulny domek otoczony lasem, z panoramicznym oknem i drewnianym tarasem. Idealne schronienie dla naturalistów.",
     image: "/photos_ranczo_44/domek 1.jpg",
     features: [
@@ -46,9 +46,9 @@ export default function Cabins() {
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="domki" className="relative py-24 md:py-32 bg-ranczo-cream overflow-hidden">
+    <section id="domki" className="relative py-24 md:py-32 bg-gradient-to-br from-[#f8fbf1] via-white to-[#eef8e9] overflow-hidden">
       {/* Decorative blob */}
-      <div className="absolute bottom-0 left-0 w-72 h-72 bg-ranczo-terracotta/5 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
+      <div className="absolute bottom-0 left-0 w-72 h-72 bg-ranczo-green/10 rounded-full translate-y-1/2 -translate-x-1/2 blur-3xl" />
 
       <div ref={ref} className="max-w-7xl mx-auto px-6">
         {/* Section header */}
@@ -67,7 +67,7 @@ export default function Cabins() {
           <div className="mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" />
           <p className="mt-6 max-w-lg mx-auto text-ranczo-charcoal/60 leading-relaxed">
             Drewniane domki z kominkiem, w pełni wyposażone, z widokiem na beskidzkie
-            szczyty. Każdy z nich ma swój unikalny charakter.
+            szczyty. Każdy z nich ma swój własny, naturalny charakter.
           </p>
         </motion.div>
 
@@ -111,7 +111,7 @@ export default function Cabins() {
                   {cabin.features.map((f) => (
                     <div
                       key={f.label}
-                      className="flex items-center gap-3 p-3 rounded-xl bg-ranczo-green/5"
+                      className="flex items-center gap-3 p-3 rounded-xl bg-white/80 ring-1 ring-ranczo-green/10"
                     >
                       <f.icon className="w-5 h-5 text-ranczo-terracotta flex-shrink-0" />
                       <span className="text-sm font-medium text-ranczo-charcoal/70">

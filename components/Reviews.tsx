@@ -10,9 +10,10 @@ export default function Reviews() {
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section className="relative py-24 md:py-32 bg-stone-100 overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-gradient-to-br from-[#edf8e8] via-white to-[#f8fbf1] overflow-hidden">
       {/* Decorative background elements */}
-      <div className="absolute top-0 right-0 w-1/3 h-full bg-ranczo-cream/50 skew-x-12 translate-x-1/4" />
+      <div className="absolute top-0 right-0 w-1/3 h-full bg-ranczo-green/8 skew-x-12 translate-x-1/4" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_18%,_rgba(242,106,27,0.08),_transparent_30%),radial-gradient(circle_at_82%_70%,_rgba(31,174,75,0.12),_transparent_36%)] pointer-events-none" />
       
       <div ref={ref} className="max-w-7xl mx-auto px-6 relative z-10">
         <div className="grid lg:grid-cols-2 gap-16 items-center">
@@ -38,7 +39,7 @@ export default function Reviews() {
             </p>
 
             {/* Rating summary */}
-            <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center p-6 bg-white rounded-2xl shadow-xl shadow-stone-200/50">
+            <div className="flex flex-col sm:flex-row gap-8 items-start sm:items-center p-6 bg-white/90 rounded-2xl shadow-xl shadow-ranczo-green/10 ring-1 ring-ranczo-green/10">
               <div className="flex items-center gap-4">
                 <div className="w-16 h-16 rounded-full bg-stone-50 flex items-center justify-center flex-shrink-0 shadow-inner">
                   <span className="text-2xl font-bold text-ranczo-charcoal">5.0</span>

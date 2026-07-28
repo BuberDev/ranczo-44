@@ -69,12 +69,11 @@ export default function EventInquiryForm() {
   return (
     <section
       id="zapytanie-event"
-      className="relative w-full py-24 bg-ranczo-charcoal overflow-hidden"
+      className="relative w-full py-24 bg-gradient-to-br from-[#0f3d24] via-ranczo-charcoal to-[#0e5a32] overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_top_left,_var(--tw-gradient-stops))] from-ranczo-terracotta/10 via-transparent to-transparent pointer-events-none" />
-      <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_bottom_right,_var(--tw-gradient-stops))] from-ranczo-forest/10 via-transparent to-transparent pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,_rgba(242,106,27,0.14),_transparent_34%),radial-gradient(circle_at_88%_85%,_rgba(120,201,67,0.16),_transparent_38%)] pointer-events-none" />
 
-      <div className="max-w-3xl mx-auto px-6">
+      <div className="relative z-10 max-w-3xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}

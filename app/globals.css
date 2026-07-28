@@ -4,18 +4,19 @@
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 
-  --color-ranczo-green: #3A4F41;
-  --color-ranczo-green-light: #4A6352;
-  --color-ranczo-wood: #8B5A2B;
-  --color-ranczo-sand: #E8DCC4;
-  --color-ranczo-charcoal: #2C302E;
-  --color-ranczo-terracotta: #D96C4A;
-  --color-ranczo-cream: #F9F6F0;
+  --color-ranczo-green: #1FAE4B;
+  --color-ranczo-green-light: #78C943;
+  --color-ranczo-wood: #8B451F;
+  --color-ranczo-sand: #F4B942;
+  --color-ranczo-charcoal: #17351F;
+  --color-ranczo-terracotta: #F26A1B;
+  --color-ranczo-cream: #F7FAF0;
 }
 
 @layer base {
   body {
     background-color: var(--color-ranczo-cream);
+    background-image: linear-gradient(180deg, #ffffff 0%, #f7faf0 52%, #edf8e8 100%);
     color: var(--color-ranczo-charcoal);
   }
 
