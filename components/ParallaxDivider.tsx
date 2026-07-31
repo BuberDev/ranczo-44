@@ -12,7 +12,7 @@ export default function ParallaxDivider() {
     <section ref={ref} className="relative h-[50vh] min-h-[400px] overflow-hidden">
       <div className="absolute inset-0">
         <Image
-          src="/photos_ranczo_44/_MG_1121.jpeg"
+          src="/photos_ranczo_44/wooden-cabin-in-snow-covered-forest.jpeg"
           alt="Ranczo 44 w śnieżnej scenerii Beskidu Niskiego"
           fill
           className="object-cover"

@@ -3,13 +3,15 @@
 import Link from "next/link";
 import Image from "next/image";
 import { usePathname } from "next/navigation";
-import { MapPin, Phone, Mail } from "lucide-react";
+import { Mail, MapPin, Phone } from "lucide-react";
 
 const quickLinks = [
   { label: "O nas", href: "/o-nas" },
   { label: "Atrakcje", href: "/atrakcje" },
+  { label: "Wydarzenia", href: "/wydarzenia" },
   { label: "Domki", href: "/domki" },
   { label: "Galeria", href: "/galeria" },
+  { label: "Rezerwacja", href: "/rezerwacja" },
 ];
 
 function InstagramIcon({ className }: { className?: string }) {
@@ -38,20 +40,24 @@ export default function Footer() {
   return (
     <footer className="bg-gradient-to-br from-[#0d321f] via-ranczo-charcoal to-[#0b4b2b] pt-20 pb-10 border-t border-white/10">
       <div className="max-w-7xl mx-auto px-6">
-        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-12 mb-16">
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-[1.15fr_0.75fr_1.1fr] gap-12 mb-16">
           {/* Brand */}
           <div className="lg:col-span-1">
-            <Link href="/" className="inline-flex items-center gap-2 mb-6 group">
+            <Link href="/" className="inline-flex items-center gap-3 mb-6 group" aria-label="Ranczo 44 — strona główna">
               <Image 
                 src="/logo.jpg" 
-                alt="Ranczo 44 Logo" 
+                alt=""
                 width={160} 
                 height={60} 
                 className="h-12 w-12 rounded-full object-cover shadow-sm transition-transform duration-300 group-hover:scale-105"
               />
+              <span className="font-serif text-xl font-semibold text-white">
+                Ranczo 44
+              </span>
             </Link>
             <p className="text-white/60 text-sm leading-relaxed mb-6">
-              Wyjątkowe miejsce w Beskidzie Niskim. Znajdź spokój, dziką naturę i prawdziwy odpoczynek z dala od zgiełku miasta.
+              Domki, śluby i kameralne wydarzenia w Beskidzie Niskim. Prawdziwa
+              natura, konie i przestrzeń na ważne chwile.
             </p>
             <div className="flex items-center gap-4">
               <a
@@ -93,21 +99,21 @@ export default function Footer() {
           </div>
 
           {/* Contact */}
-          <div className="lg:col-span-2">
+          <div>
             <h4 className="text-white font-serif font-semibold text-lg mb-6">Kontakt</h4>
             <ul className="space-y-4">
               <li className="flex items-start gap-4 text-white/60 text-sm">
                 <MapPin className="w-5 h-5 text-ranczo-terracotta shrink-0 mt-0.5" />
                 <span>
                   Uście Gorlickie 44<br />
-                  38-316 Uście Gorlickie<br />
+                  38-315 Uście Gorlickie<br />
                   Beskid Niski, Polska
                 </span>
               </li>
               <li className="flex items-center gap-4 text-white/60 text-sm">
                 <Phone className="w-5 h-5 text-ranczo-terracotta shrink-0" />
-                <a href="tel:+48123456789" className="hover:text-white transition-colors">
-                  +48 123 456 789
+                <a href="tel:+48512034668" className="hover:text-white transition-colors">
+                  +48 512 034 668
                 </a>
               </li>
               <li className="flex items-center gap-4 text-white/60 text-sm">
@@ -125,10 +131,9 @@ export default function Footer() {
           <p className="text-white/40 text-xs">
             © {new Date().getFullYear()} Ranczo 44. Wszelkie prawa zastrzeżone.
           </p>
-          <div className="flex items-center gap-6 text-xs text-white/40">
-            <a href="#" className="hover:text-white transition-colors">Polityka prywatności</a>
-            <a href="#" className="hover:text-white transition-colors">Regulamin</a>
-          </div>
+          <p className="text-white/40 text-xs">
+            Uście Gorlickie · Beskid Niski
+          </p>
         </div>
       </div>
     </footer>

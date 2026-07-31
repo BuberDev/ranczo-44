@@ -4,12 +4,13 @@ import ParallaxDivider from "@/components/ParallaxDivider";
 import Reviews from "@/components/Reviews";
 import Cabins from "@/components/Cabins";
 import Attractions from "@/components/Attractions";
+import Celebrations from "@/components/Celebrations";
 import Gallery from "@/components/Gallery";
 import BookingForm from "@/components/BookingForm";
 
 export const metadata = {
-  title: "Ranczo 44 – Domki w Beskidzie Niskim | Uście Gorlickie",
-  description: "Ranczo 44 to kameralny ośrodek wypoczynkowy w sercu Beskidu Niskiego. Drewniane domki z kominkiem, podgrzewany basen, cedrowa bania, konie i czyste górskie powietrze.",
+  title: "Ranczo 44 – Domki, śluby i wydarzenia w Beskidzie Niskim",
+  description: "Kameralne domki z kominkiem, śluby i wydarzenia w naturze, konie, podgrzewany basen oraz cedrowa balia. Poznaj Ranczo 44 w Uściu Gorlickim.",
 };
 
 export default function Home() {
@@ -20,6 +21,7 @@ export default function Home() {
       <ParallaxDivider />
       <Cabins />
       <Attractions />
+      <Celebrations />
       <Gallery />
       <Reviews />
       <BookingForm />

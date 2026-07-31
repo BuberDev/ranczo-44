@@ -23,6 +23,9 @@
 # misc
 .DS_Store
 *.pem
+/source-media/
+/public/hero_video/sources/
+/public/hero_video/video.mov
 
 # debug
 npm-debug.log*

@@ -8,13 +8,14 @@ export const metadata = {
 
 export default function ContactPage() {
   return (
-    <main className="min-h-screen">
+    <main className="min-h-screen bg-ranczo-charcoal">
       <SubpageHero
         title="Kontakt"
         subtitle="Ranczo 44 · Jesteśmy dla Ciebie"
-        imageSrc="/photos_ranczo_44/image00086.jpeg"
+        imageSrc="/photos_ranczo_44/warm-cabin-bedroom-with-green-mirror.jpeg"
+        nextSectionTone="dark"
       />
-      <Contact />
+      <Contact showHeader={false} />
     </main>
   );
 }

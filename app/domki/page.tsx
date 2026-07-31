@@ -1,6 +1,7 @@
 import Cabins from "@/components/Cabins";
 import SubpageHero from "@/components/SubpageHero";
 import BookingForm from "@/components/BookingForm";
+import CabinMedia from "@/components/CabinMedia";
 
 export const metadata = {
   title: "Domki – Komfortowy wypoczynek | Ranczo 44",
@@ -13,9 +14,10 @@ export default function CabinsPage() {
       <SubpageHero
         title="Nasze Domki"
         subtitle="Ranczo 44 · Komfortowy wypoczynek"
-        imageSrc="/photos_ranczo_44/image00067.jpeg"
+        imageSrc="/cabins/cottage-4/cottage-4-ranch-view-with-horses.jpg"
       />
-      <Cabins />
+      <Cabins showHeader={false} />
+      <CabinMedia />
       <BookingForm />
     </main>
   );

@@ -13,7 +13,7 @@ function rangesOverlap(aStart: string, aEnd: string, bStart: string, bEnd: strin
   return aStart < bEnd && bStart < aEnd;
 }
 
-export default function BookingForm() {
+export default function BookingForm({ showHeader = true }: { showHeader?: boolean }) {
   const [step, setStep] = useState<FormStep>("dates");
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [availability, setAvailability] = useState<AvailabilityMap>({});
@@ -95,10 +95,10 @@ export default function BookingForm() {
   return (
     <section
       id="rezerwacja"
-      className="relative w-full py-24 bg-gradient-to-br from-[#0f3d24] via-ranczo-charcoal to-[#0e5a32] overflow-hidden"
+      className="relative w-full py-24 bg-gradient-to-br from-[#102d20] via-ranczo-charcoal to-[#254d36] overflow-hidden"
     >
       {/* Background texture */}
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,_rgba(242,106,27,0.14),_transparent_34%),radial-gradient(circle_at_88%_85%,_rgba(120,201,67,0.16),_transparent_38%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,_rgba(201,101,57,0.14),_transparent_34%),radial-gradient(circle_at_88%_85%,_rgba(132,163,107,0.16),_transparent_38%)] pointer-events-none" />
 
       <div className="max-w-5xl mx-auto px-6">
         {/* Header */}
@@ -110,14 +110,18 @@ export default function BookingForm() {
           className="text-center mb-14"
         >
           <div className="w-12 h-0.5 bg-ranczo-terracotta mx-auto mb-6" />
-          <p className="text-xs tracking-[0.3em] uppercase text-ranczo-terracotta font-semibold mb-3">
-            Ranczo 44 · Beskid Niski
-          </p>
-          <h2 className="font-serif text-4xl md:text-5xl font-bold text-white">
-            Zarezerwuj pobyt
-          </h2>
+          {showHeader && (
+            <>
+              <p className="text-xs tracking-[0.3em] uppercase text-ranczo-terracotta font-semibold mb-3">
+                Ranczo 44 · Beskid Niski
+              </p>
+              <h2 className="font-serif text-4xl md:text-5xl font-bold text-white">
+                Zarezerwuj pobyt
+              </h2>
+            </>
+          )}
           <p className="mt-4 text-white/50 max-w-md mx-auto text-sm leading-relaxed">
-            Wyślij zapytanie, a odezwiemy się w ciągu 24 godzin, by potwierdzić dostępność i szczegóły.
+            Wyślij zapytanie o termin i domek. Wrócimy do Ciebie z potwierdzeniem dostępności oraz szczegółami pobytu.
           </p>
         </motion.div>
 
@@ -322,7 +326,7 @@ export default function BookingForm() {
                       name="phone"
                       value={form.phone}
                       onChange={handleChange}
-                      placeholder="+48 123 456 789"
+                      placeholder="np. +48 600 000 000"
                       className={inputClass}
                     />
                   </div>
@@ -401,7 +405,7 @@ export default function BookingForm() {
                   Zapytanie wysłane!
                 </h3>
                 <p className="text-white/50 max-w-sm leading-relaxed mb-8">
-                  Dziękujemy, {form.name}! Skontaktujemy się z Tobą na adres <span className="text-ranczo-sand">{form.email}</span> w ciągu 24 godzin.
+                  Dziękujemy, {form.name}! Odpowiedź w sprawie dostępności wyślemy na adres <span className="text-ranczo-sand">{form.email}</span>.
                 </p>
                 <button
                   onClick={() => { setStep("dates"); setForm({ checkin: "", checkout: "", guests: "2", cabin: "", name: "", email: "", phone: "", message: "" }); }}

@@ -69,9 +69,9 @@ export default function EventInquiryForm() {
   return (
     <section
       id="zapytanie-event"
-      className="relative w-full py-24 bg-gradient-to-br from-[#0f3d24] via-ranczo-charcoal to-[#0e5a32] overflow-hidden"
+      className="relative w-full py-24 bg-gradient-to-br from-[#102d20] via-ranczo-charcoal to-[#254d36] overflow-hidden"
     >
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,_rgba(242,106,27,0.14),_transparent_34%),radial-gradient(circle_at_88%_85%,_rgba(120,201,67,0.16),_transparent_38%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_16%_12%,_rgba(201,101,57,0.14),_transparent_34%),radial-gradient(circle_at_88%_85%,_rgba(132,163,107,0.16),_transparent_38%)] pointer-events-none" />
 
       <div className="relative z-10 max-w-3xl mx-auto px-6">
         <motion.div
@@ -208,7 +208,7 @@ export default function EventInquiryForm() {
                       name="phone"
                       value={form.phone}
                       onChange={handleChange}
-                      placeholder="+48 123 456 789"
+                      placeholder="np. +48 600 000 000"
                       className={inputClass}
                     />
                   </div>
@@ -268,7 +268,7 @@ export default function EventInquiryForm() {
                   Zapytanie wysłane!
                 </h3>
                 <p className="text-white/50 max-w-sm leading-relaxed">
-                  Dziękujemy! Odezwiemy się do Ciebie z propozycją w ciągu 48 godzin.
+                  Dziękujemy! Odezwiemy się do Ciebie z informacją o dostępności i możliwościach organizacji.
                 </p>
               </motion.div>
             )}

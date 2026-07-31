@@ -13,9 +13,10 @@ export default function AttractionsPage() {
       <SubpageHero
         title="Atrakcje"
         subtitle="Ranczo 44 · Przygoda czeka"
-        imageSrc="/photos_ranczo_44/_MG_1121.jpeg"
+        imageSrc="/photos_ranczo_44/wooden-cabin-in-snow-covered-forest.jpeg"
+        nextSectionTone="dark"
       />
-      <Attractions />
+      <Attractions showHeader={false} />
       <BookingForm />
     </main>
   );

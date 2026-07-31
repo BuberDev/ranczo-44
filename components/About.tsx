@@ -5,12 +5,12 @@ import Image from "next/image";
 import { motion, useInView } from "framer-motion";
 import { Heart, Trees, Dog } from "lucide-react";
 
-export default function About() {
+export default function About({ showHeader = true }: { showHeader?: boolean }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-100px" });
 
   return (
-    <section id="o-nas" className="relative py-24 md:py-32 bg-gradient-to-br from-white via-ranczo-cream to-[#edf8e8] overflow-hidden">
+    <section id="o-nas" className="relative py-24 md:py-32 bg-gradient-to-br from-white via-ranczo-cream to-[#ebe7dc] overflow-hidden">
       {/* Decorative background */}
       <div className="absolute top-0 right-0 w-96 h-96 bg-ranczo-green/8 rounded-full -translate-y-1/2 translate-x-1/2 blur-3xl" />
 
@@ -20,15 +20,19 @@ export default function About() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 md:mb-20"
+          className={showHeader ? "text-center mb-16 md:mb-20" : "text-center mb-10 md:mb-12"}
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-ranczo-terracotta font-medium">
-            Nasza historia
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-ranczo-charcoal">
-            Witaj na Ranczo
-          </h2>
-          <div className="mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" />
+          {showHeader && (
+            <>
+              <span className="text-sm tracking-[0.3em] uppercase text-ranczo-terracotta font-medium">
+                Nasza historia
+              </span>
+              <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-ranczo-charcoal">
+                Witaj na Ranczo
+              </h2>
+            </>
+          )}
+          <div className={showHeader ? "mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" : "mx-auto w-16 h-px bg-ranczo-terracotta"} />
         </motion.div>
 
         {/* Content grid */}
@@ -42,7 +46,7 @@ export default function About() {
           >
             <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
               <Image
-                src="/photos_ranczo_44/_MG_0339.jpeg"
+                src="/photos_ranczo_44/wooden-cabin-on-misty-ranch-hillside.jpeg"
                 alt="Drewniany domek na Ranczo 44 z zielonymi okiennicami"
                 fill
                 className="object-cover hover:scale-105 transition-transform duration-700"
@@ -57,7 +61,7 @@ export default function About() {
               className="absolute -bottom-6 -right-6 w-40 h-40 md:w-52 md:h-52 rounded-xl overflow-hidden shadow-xl border-4 border-ranczo-cream"
             >
               <Image
-                src="/photos_ranczo_44/domek.jpg"
+                src="/photos_ranczo_44/cozy-cabin-reading-corner-with-red-armchair.jpg"
                 alt="Przytulny fotel w domku Ranczo 44"
                 fill
                 className="object-cover"
@@ -97,7 +101,7 @@ export default function About() {
               {[
                 { icon: Heart, label: "Rodzinna\natmosfera" },
                 { icon: Trees, label: "Dzika\nnatura" },
-                { icon: Dog, label: "Pet\nfriendly" },
+                { icon: Dog, label: "Pobyt ze\nzwierzakiem" },
               ].map((item, i) => (
                 <motion.div
                   key={item.label}

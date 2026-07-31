@@ -13,9 +13,9 @@ export default function AboutPage() {
       <SubpageHero
         title="O nas"
         subtitle="Ranczo 44 · Nasza historia"
-        imageSrc="/photos_ranczo_44/_MG_1076.jpeg"
+        imageSrc="/photos_ranczo_44/snow-covered-ranch-and-wooden-cabin.jpeg"
       />
-      <About />
+      <About showHeader={false} />
       <BookingForm />
     </main>
   );

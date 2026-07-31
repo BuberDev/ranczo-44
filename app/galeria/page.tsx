@@ -12,9 +12,9 @@ export default function GalleryPage() {
       <SubpageHero
         title="Galeria"
         subtitle="Ranczo 44 · Piękno Beskidu Niskiego"
-        imageSrc="/photos_ranczo_44/image00080.jpeg"
+        imageSrc="/photos_ranczo_44/rustic-bedroom-with-live-edge-table-and-jute-rug.jpeg"
       />
-      <Gallery />
+      <Gallery showHeader={false} />
     </main>
   );
 }

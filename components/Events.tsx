@@ -9,47 +9,51 @@ const eventTypes = [
   {
     icon: PartyPopper,
     title: "Imprezy okolicznościowe",
-    desc: "Urodziny, integracje firmowe, wieczory kawalerskie i panieńskie — cały teren rancza do dyspozycji Twojej grupy, z ogniskiem, grillem i basenem w tle.",
-    image: "/photos_ranczo_44/hero_photo_4.JPG",
+    desc: "Urodziny, spotkania rodzinne i wyjazdy grupowe w kameralnym otoczeniu, z możliwością połączenia pobytu z ogniskiem, grillem i atrakcjami Rancza.",
+    image: "/photos_ranczo_44/ranch-pool-with-pink-flamingo-float.jpg",
   },
   {
     icon: Heart,
     title: "Śluby i wesela plenerowe",
-    desc: "Ceremonia z widokiem na Beskid Niski i przyjęcie pod gołym niebem. Malownicza sceneria, którą zapamiętacie na zawsze — my zajmujemy się resztą.",
-    image: "/photos_ranczo_44/image00063.jpeg",
+    desc: "Ceremonia, sesja lub kameralne przyjęcie w otoczeniu Beskidu Niskiego. Zakres organizacji ustalamy indywidualnie, zgodnie z charakterem uroczystości.",
+    image: "/events/wedding-session/bride-and-groom-with-horse-in-countryside.jpeg",
   },
   {
     icon: Fence,
     title: "Aktywności z końmi i warsztaty",
-    desc: "Jazda konna, kontakt ze zwierzętami i warsztaty terenowe dla grup oraz szkół — niepowtarzalna atrakcja integracyjna w sercu natury.",
-    image: "/photos_ranczo_44/IMG_5315.JPG",
+    desc: "Kontakt ze zwierzętami i warsztaty terenowe dla grup — naturalne uzupełnienie pobytu oraz spokojnej integracji z dala od miasta.",
+    image: "/photos_ranczo_44/horses-standing-by-cabin-porch.jpg",
   },
 ];
 
-export default function Events() {
+export default function Events({ showHeader = true }: { showHeader?: boolean }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section className="relative py-24 md:py-32 bg-gradient-to-br from-[#0f3d24] via-ranczo-charcoal to-[#124f35] overflow-hidden">
+    <section className="relative py-24 md:py-32 bg-gradient-to-br from-[#102d20] via-ranczo-charcoal to-[#254d36] overflow-hidden">
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-ranczo-terracotta/30 to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,_rgba(31,174,75,0.18),_transparent_34%),radial-gradient(circle_at_82%_20%,_rgba(242,106,27,0.14),_transparent_32%),radial-gradient(circle_at_50%_100%,_rgba(120,201,67,0.12),_transparent_38%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_20%_10%,_rgba(47,107,69,0.18),_transparent_34%),radial-gradient(circle_at_82%_20%,_rgba(201,101,57,0.14),_transparent_32%),radial-gradient(circle_at_50%_100%,_rgba(132,163,107,0.12),_transparent_38%)] pointer-events-none" />
 
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
         <motion.div
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 md:mb-20"
+          className={showHeader ? "text-center mb-16 md:mb-20" : "text-center mb-12 md:mb-16"}
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-ranczo-terracotta font-medium">
-            Wyjątkowe chwile
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white">
-            Wydarzenia na Ranczo
-          </h2>
-          <div className="mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" />
-          <p className="mt-6 max-w-lg mx-auto text-white/60 leading-relaxed">
+          {showHeader && (
+            <>
+              <span className="text-sm tracking-[0.3em] uppercase text-ranczo-terracotta font-medium">
+                Wyjątkowe chwile
+              </span>
+              <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white">
+                Wydarzenia na Ranczo
+              </h2>
+            </>
+          )}
+          <div className={showHeader ? "mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" : "mx-auto w-16 h-px bg-ranczo-terracotta"} />
+          <p className="mt-6 max-w-lg mx-auto text-white/70 leading-relaxed">
             Dzika natura Beskidu Niskiego i kameralny klimat Rancza jako scenografia
             Twojego wydarzenia — dopasowujemy przestrzeń i atrakcje do okazji.
           </p>
@@ -84,7 +88,7 @@ export default function Events() {
                     {item.title}
                   </h3>
                 </div>
-                <p className="text-sm text-white/50 leading-relaxed">
+                <p className="text-sm text-white/68 leading-relaxed">
                   {item.desc}
                 </p>
               </div>

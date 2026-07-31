@@ -51,14 +51,17 @@ export default function Navbar() {
       >
         <nav className="max-w-7xl mx-auto px-6 flex items-center justify-between">
           {/* Logo */}
-          <Link href="/" className="flex items-center gap-2 group">
+          <Link href="/" className="flex items-center gap-3 group" aria-label="Ranczo 44 — strona główna">
             <Image 
               src="/logo.jpg" 
-              alt="Ranczo 44 Logo" 
+              alt=""
               width={160} 
               height={60} 
               className="h-10 w-10 md:h-12 md:w-12 rounded-full object-cover shadow-sm transition-transform duration-300 group-hover:scale-105"
             />
+            <span className="font-serif text-lg md:text-xl font-semibold text-white tracking-wide">
+              Ranczo 44
+            </span>
           </Link>
 
           {/* Desktop nav */}
@@ -91,8 +94,10 @@ export default function Navbar() {
           {/* Mobile burger */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="lg:hidden text-white p-2"
-            aria-label="Toggle menu"
+            className="lg:hidden text-white p-2 -mr-2"
+            aria-label={mobileOpen ? "Zamknij menu" : "Otwórz menu"}
+            aria-expanded={mobileOpen}
+            aria-controls="mobile-navigation"
           >
             {mobileOpen ? <X size={24} /> : <Menu size={24} />}
           </button>
@@ -108,7 +113,7 @@ export default function Navbar() {
             exit={{ opacity: 0 }}
             className="fixed inset-0 z-40 bg-ranczo-charcoal/95 backdrop-blur-xl flex flex-col items-center justify-center"
           >
-            <nav className="flex flex-col items-center gap-8">
+            <nav id="mobile-navigation" className="flex flex-col items-center gap-8">
               {navLinks.map((link, i) => (
                 <Link
                   key={link.href}

@@ -19,7 +19,7 @@ const attractions = [
     icon: Waves,
     title: "Podgrzewany basen",
     desc: "Ciepła woda czeka na Ciebie niezależnie od pogody. Relaks z widokiem na góry to coś, co zostanie z Tobą na długo.",
-    image: "/attractions/pool.jpg",
+    image: "/attractions/pool-ranczo-44.jpg",
   },
   {
     icon: Flame,
@@ -65,15 +65,15 @@ const attractions = [
   },
 ];
 
-export default function Attractions() {
+export default function Attractions({ showHeader = true }: { showHeader?: boolean }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="atrakcje" className="relative py-24 md:py-32 bg-gradient-to-br from-[#0f3d24] via-ranczo-charcoal to-[#0e5a32] overflow-hidden">
+    <section id="atrakcje" className="relative py-24 md:py-32 bg-gradient-to-br from-[#102d20] via-ranczo-charcoal to-[#254d36] overflow-hidden">
       {/* Decorative */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-ranczo-terracotta/30 to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_12%,_rgba(120,201,67,0.18),_transparent_34%),radial-gradient(circle_at_88%_8%,_rgba(242,106,27,0.14),_transparent_30%),radial-gradient(circle_at_50%_100%,_rgba(31,174,75,0.14),_transparent_38%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_12%,_rgba(132,163,107,0.14),_transparent_34%),radial-gradient(circle_at_88%_8%,_rgba(201,101,57,0.12),_transparent_30%),radial-gradient(circle_at_50%_100%,_rgba(47,107,69,0.16),_transparent_38%)] pointer-events-none" />
 
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section header */}
@@ -81,23 +81,27 @@ export default function Attractions() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16 md:mb-20"
+          className={showHeader ? "text-center mb-16 md:mb-20" : "text-center mb-12 md:mb-16"}
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-ranczo-terracotta font-medium">
-            Co tu znajdziesz
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white">
-            Atrakcje
-          </h2>
-          <div className="mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" />
-          <p className="mt-6 max-w-lg mx-auto text-white/60 leading-relaxed">
+          {showHeader && (
+            <>
+              <span className="text-sm tracking-[0.3em] uppercase text-ranczo-terracotta font-medium">
+                Co tu znajdziesz
+              </span>
+              <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white">
+                Atrakcje
+              </h2>
+            </>
+          )}
+          <div className={showHeader ? "mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" : "mx-auto w-16 h-px bg-ranczo-terracotta"} />
+          <p className="mt-6 max-w-lg mx-auto text-white/70 leading-relaxed">
             Każdy dzień na Ranczo może mieć inny rytm. Od porannej jogi i spaceru
             po wieczorną kąpiel w cedrowej bani — tu czas płynie spokojniej.
           </p>
         </motion.div>
 
         {/* Cards grid */}
-        <div className="grid sm:grid-cols-2 lg:grid-cols-3 gap-6">
+        <div className="grid sm:grid-cols-2 xl:grid-cols-4 gap-6">
           {attractions.map((item, i) => (
             <motion.div
               key={item.title}
@@ -113,7 +117,7 @@ export default function Attractions() {
                   alt={item.title}
                   fill
                   className="object-cover group-hover:scale-110 transition-transform duration-700"
-                  sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
+                  sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ranczo-charcoal/90 via-ranczo-charcoal/20 to-transparent" />
               </div>
@@ -128,7 +132,7 @@ export default function Attractions() {
                     {item.title}
                   </h3>
                 </div>
-                <p className="text-sm text-white/50 leading-relaxed">
+                <p className="text-sm text-white/68 leading-relaxed">
                   {item.desc}
                 </p>
               </div>

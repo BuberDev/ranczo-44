@@ -1,6 +1,7 @@
 import SubpageHero from "@/components/SubpageHero";
 import Events from "@/components/Events";
 import EventInquiryForm from "@/components/EventInquiryForm";
+import WeddingGallery from "@/components/WeddingGallery";
 
 export const metadata = {
   title: "Wydarzenia i Eventy Plenerowe | Ranczo 44",
@@ -14,9 +15,11 @@ export default function EventsPage() {
       <SubpageHero
         title="Wydarzenia"
         subtitle="Ranczo 44 · Eventy plenerowe"
-        imageSrc="/photos_ranczo_44/image00063.jpeg"
+        imageSrc="/events/wedding-session/bride-and-groom-by-rustic-wedding-wagon.jpeg"
+        nextSectionTone="dark"
       />
-      <Events />
+      <Events showHeader={false} />
+      <WeddingGallery />
       <EventInquiryForm />
     </main>
   );

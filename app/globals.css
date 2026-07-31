@@ -1,26 +1,56 @@
 @import "tailwindcss";
 
-@theme {
+@theme inline {
   --font-sans: var(--font-inter), ui-sans-serif, system-ui, sans-serif;
   --font-serif: var(--font-playfair), ui-serif, Georgia, Cambria, "Times New Roman", Times, serif;
 
-  --color-ranczo-green: #1FAE4B;
-  --color-ranczo-green-light: #78C943;
-  --color-ranczo-wood: #8B451F;
-  --color-ranczo-sand: #F4B942;
-  --color-ranczo-charcoal: #17351F;
-  --color-ranczo-terracotta: #F26A1B;
-  --color-ranczo-cream: #F7FAF0;
+  --color-ranczo-green: #2f6b45;
+  --color-ranczo-green-light: #84a36b;
+  --color-ranczo-wood: #79533c;
+  --color-ranczo-sand: #e1c38b;
+  --color-ranczo-charcoal: #183425;
+  --color-ranczo-terracotta: #c96539;
+  --color-ranczo-cream: #f5f1e8;
 }
 
 @layer base {
   body {
     background-color: var(--color-ranczo-cream);
-    background-image: linear-gradient(180deg, #ffffff 0%, #f7faf0 52%, #edf8e8 100%);
+    background-image: linear-gradient(180deg, #ffffff 0%, #f5f1e8 52%, #ebe7dc 100%);
     color: var(--color-ranczo-charcoal);
   }
 
   h1, h2, h3, h4, h5, h6 {
     font-family: var(--font-serif);
+  }
+}
+
+.reviews-marquee-track {
+  will-change: transform;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    scroll-behavior: auto !important;
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+
+  .reviews-marquee-viewport {
+    overflow-x: auto;
+    mask-image: none !important;
+    -webkit-mask-image: none !important;
+  }
+
+  .reviews-marquee-track {
+    animation: none !important;
+    transform: none !important;
+  }
+
+  .reviews-marquee-duplicate {
+    display: none;
   }
 }

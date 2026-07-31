@@ -2,12 +2,21 @@
 
 import { useEffect, useRef, useSyncExternalStore } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion } from "framer-motion";
-import { ChevronDown } from "lucide-react";
+import { Flame, House, Star } from "lucide-react";
 
-const heroVideoSrc = process.env.NEXT_PUBLIC_HERO_VIDEO_URL;
-const heroMediaClass =
-  "absolute inset-0 h-full w-full scale-[1.18] object-cover object-center brightness-110 contrast-105 saturate-150";
+const heroVideoSrc = "/hero_video/video.mp4";
+const heroPosterSrc = "/hero_video/video-poster.jpg";
+const heroPosterClass =
+  "absolute inset-0 h-full w-full scale-[1.04] object-cover object-[62%_center] brightness-[0.82] contrast-105 saturate-[0.88]";
+const heroVideoClass =
+  "absolute inset-0 h-full w-full scale-[1.04] object-cover object-[62%_center] brightness-[0.82] contrast-105 saturate-[0.88] transform-gpu md:scale-[1.18]";
+const heroHighlights = [
+  { icon: House, value: "4 domki", label: "kameralny pobyt" },
+  { icon: Star, value: "5/5", label: "opinie Google" },
+  { icon: Flame, value: "Balia · basen · konie", label: "atrakcje na miejscu" },
+];
 
 function subscribeToReducedMotion(callback: () => void) {
   const mediaQuery = window.matchMedia("(prefers-reduced-motion: reduce)");
@@ -32,6 +41,8 @@ export default function Hero() {
   );
 
   useEffect(() => {
+    if (reducedMotion) return;
+
     const onScroll = () => {
       if (parallaxRef.current) {
         const scrollY = window.scrollY;
@@ -40,21 +51,21 @@ export default function Hero() {
     };
     window.addEventListener("scroll", onScroll, { passive: true });
     return () => window.removeEventListener("scroll", onScroll);
-  }, []);
+  }, [reducedMotion]);
 
   return (
-    <section id="hero" className="relative h-screen min-h-[700px] overflow-hidden">
+    <section id="hero" className="relative min-h-[760px] h-[100svh] overflow-hidden">
       {/* Wideo tła z parallaxą; przy prefers-reduced-motion pokazujemy statyczny poster */}
       <div ref={parallaxRef} className="absolute inset-0 -top-20 -bottom-20">
-        {reducedMotion || !heroVideoSrc ? (
+        {reducedMotion ? (
           <Image
-            src="/videos/hero-poster.jpg"
+            src={heroPosterSrc}
             alt="Ranczo 44 — Beskid Niski"
             fill
-            className={heroMediaClass}
+            className={heroPosterClass}
             quality={90}
             sizes="100vw"
-            priority
+            loading="eager"
           />
         ) : (
           <video
@@ -62,8 +73,9 @@ export default function Hero() {
             muted
             loop
             playsInline
-            poster="/videos/hero-poster.jpg"
-            className={heroMediaClass}
+            preload="auto"
+            poster={heroPosterSrc}
+            className={heroVideoClass}
             aria-label="Ranczo 44 — Beskid Niski"
           >
             <source src={heroVideoSrc} type="video/mp4" />
@@ -72,88 +84,86 @@ export default function Hero() {
       </div>
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/12 via-ranczo-charcoal/0 to-ranczo-charcoal/30 z-10" />
-      <div className="absolute inset-0 bg-gradient-to-r from-ranczo-charcoal/24 via-transparent to-ranczo-charcoal/8 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/45 via-ranczo-charcoal/10 to-ranczo-charcoal/75 z-10" />
+      <div className="absolute inset-0 bg-gradient-to-r from-ranczo-charcoal/88 via-ranczo-charcoal/45 to-ranczo-charcoal/10 z-10" />
 
       {/* Content */}
-      <div className="relative z-20 h-full flex flex-col items-center justify-center px-6 text-center">
-        {/* Decorative line */}
-        <motion.div
-          initial={{ scaleX: 0 }}
-          animate={{ scaleX: 1 }}
-          transition={{ duration: 1.2, delay: 0.3 }}
-          className="w-20 h-px bg-ranczo-terracotta mb-8"
-        />
-
-        {/* Subtitle */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 0.5 }}
-          className="text-sm md:text-base tracking-[0.35em] uppercase text-ranczo-sand/90 font-medium mb-4"
-        >
-          Beskid Niski · Uście Gorlickie
-        </motion.p>
-
-        {/* Main title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 1, delay: 0.7 }}
-          className="font-serif text-5xl sm:text-6xl md:text-7xl lg:text-8xl font-bold text-white leading-tight drop-shadow-[0_4px_18px_rgba(0,0,0,0.55)]"
-        >
-          Ranczo{" "}
-          <span className="text-ranczo-terracotta">44</span>
-        </motion.h1>
-
-        {/* Tagline */}
-        <motion.p
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.0 }}
-          className="mt-6 max-w-xl text-lg md:text-xl text-white font-medium leading-relaxed drop-shadow-[0_3px_14px_rgba(0,0,0,0.55)]"
-        >
-          Wyprawa w głąb beskidzkiej natury.
-          <br className="hidden sm:block" />
-          Gdzie spokój, konie i las spotykają się z rodzinnym odpoczynkiem.
-        </motion.p>
-
-        {/* CTA buttons */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          animate={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.8, delay: 1.3 }}
-          className="mt-10 flex flex-col sm:flex-row gap-4"
-        >
-          <a
-            href="/rezerwacja"
-            className="px-8 py-3.5 bg-ranczo-terracotta text-white font-semibold rounded-full hover:bg-ranczo-terracotta/85 transition-all duration-300 hover:shadow-xl hover:shadow-ranczo-terracotta/20 hover:-translate-y-0.5"
+      <div className="relative z-20 h-full max-w-7xl mx-auto px-6 pt-28 pb-28 flex items-center">
+        <div className="max-w-3xl">
+          <motion.div
+            initial={{ opacity: 0, y: 16 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.25 }}
+            className="flex items-center gap-4 mb-5"
           >
-            Zarezerwuj pobyt
-          </a>
-          <a
-            href="#o-nas"
-            className="px-8 py-3.5 border border-white/30 text-white font-medium rounded-full hover:bg-white/10 transition-all duration-300 backdrop-blur-sm"
+            <span className="w-12 h-px bg-ranczo-terracotta" />
+            <p className="text-xs sm:text-sm tracking-[0.26em] uppercase text-ranczo-sand font-semibold">
+              Ranczo 44 · Uście Gorlickie
+            </p>
+          </motion.div>
+
+          <motion.h1
+            initial={{ opacity: 0, y: 28 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.9, delay: 0.4 }}
+            className="font-serif text-[2.8rem] sm:text-6xl md:text-7xl font-semibold text-white leading-[1.05] text-balance drop-shadow-[0_4px_20px_rgba(0,0,0,0.4)]"
           >
-            Odkryj Ranczo
-          </a>
-        </motion.div>
+            Domki i wyjątkowe chwile{" "}
+            <span className="italic font-normal text-ranczo-sand">
+              w sercu Beskidu
+            </span>
+          </motion.h1>
+
+          <motion.p
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.65 }}
+            className="mt-6 max-w-2xl text-base sm:text-lg md:text-xl text-white/88 leading-relaxed drop-shadow-[0_3px_14px_rgba(0,0,0,0.45)]"
+          >
+            Odpocznij w drewnianym domku z kominkiem albo zorganizuj
+            kameralny ślub i rodzinne spotkanie. Konie, balia, basen i góry
+            tworzą tu naturalną oprawę każdej chwili.
+          </motion.p>
+
+          <motion.div
+            initial={{ opacity: 0, y: 18 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.85 }}
+            className="mt-8 flex flex-col sm:flex-row gap-3"
+          >
+            <Link
+              href="/rezerwacja"
+              className="inline-flex min-h-12 items-center justify-center px-7 py-3.5 bg-ranczo-terracotta text-white font-semibold rounded-full hover:bg-[#b6562f] transition-all duration-300 hover:shadow-xl hover:shadow-black/20 hover:-translate-y-0.5"
+            >
+              Sprawdź dostępne terminy
+            </Link>
+            <Link
+              href="/wydarzenia"
+              className="inline-flex min-h-12 items-center justify-center px-7 py-3.5 border border-white/35 text-white font-medium rounded-full hover:bg-white/10 hover:border-white/55 transition-all duration-300 backdrop-blur-sm"
+            >
+              Śluby i wydarzenia
+            </Link>
+          </motion.div>
+        </div>
       </div>
 
-      {/* Scroll indicator */}
       <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 2, duration: 1 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 text-white/60"
+        initial={{ opacity: 0, y: 12 }}
+        animate={{ opacity: 1, y: 0 }}
+        transition={{ delay: 1.05, duration: 0.7 }}
+        className="absolute z-20 bottom-0 inset-x-0 border-t border-white/15 bg-ranczo-charcoal/45 backdrop-blur-md"
       >
-        <span className="text-xs tracking-widest uppercase">Przewiń</span>
-        <motion.div
-          animate={{ y: [0, 8, 0] }}
-          transition={{ repeat: Infinity, duration: 1.8 }}
-        >
-          <ChevronDown size={20} />
-        </motion.div>
+        <div className="max-w-7xl mx-auto px-6 py-4 grid grid-cols-3 gap-3 sm:gap-8">
+          {heroHighlights.map((item) => (
+            <div key={item.value} className="flex items-center justify-center gap-2 sm:gap-3 text-white">
+              <item.icon className="hidden sm:block w-5 h-5 text-ranczo-sand shrink-0" />
+              <div className="text-center sm:text-left">
+                <div className="text-xs sm:text-sm font-semibold">{item.value}</div>
+                <div className="hidden sm:block text-xs text-white/55 mt-0.5">{item.label}</div>
+              </div>
+            </div>
+          ))}
+        </div>
       </motion.div>
     </section>
   );

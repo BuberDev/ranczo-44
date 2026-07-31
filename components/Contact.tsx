@@ -1,8 +1,9 @@
 "use client";
 
 import { useRef } from "react";
+import Link from "next/link";
 import { motion, useInView } from "framer-motion";
-import { MapPin, Phone, Mail, ExternalLink } from "lucide-react";
+import { ArrowRight, Mail, MapPin, Phone } from "lucide-react";
 
 function InstagramIcon({ className }: { className?: string }) {
   return (
@@ -22,15 +23,15 @@ function FacebookIcon({ className }: { className?: string }) {
   );
 }
 
-export default function Contact() {
+export default function Contact({ showHeader = true }: { showHeader?: boolean }) {
   const ref = useRef(null);
   const inView = useInView(ref, { once: true, margin: "-80px" });
 
   return (
-    <section id="kontakt" className="relative py-24 md:py-32 bg-gradient-to-br from-[#0f3d24] via-ranczo-charcoal to-[#0d5531] overflow-hidden">
+    <section id="kontakt" className="relative py-24 md:py-32 bg-gradient-to-br from-[#102d20] via-ranczo-charcoal to-[#254d36] overflow-hidden">
       {/* Top border */}
       <div className="absolute top-0 left-0 w-full h-px bg-gradient-to-r from-transparent via-ranczo-terracotta/30 to-transparent" />
-      <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,_rgba(120,201,67,0.16),_transparent_34%),radial-gradient(circle_at_86%_12%,_rgba(242,106,27,0.12),_transparent_30%)] pointer-events-none" />
+      <div className="absolute inset-0 bg-[radial-gradient(circle_at_12%_20%,_rgba(132,163,107,0.16),_transparent_34%),radial-gradient(circle_at_86%_12%,_rgba(201,101,57,0.12),_transparent_30%)] pointer-events-none" />
 
       <div ref={ref} className="relative z-10 max-w-7xl mx-auto px-6">
         {/* Section header */}
@@ -38,15 +39,19 @@ export default function Contact() {
           initial={{ opacity: 0, y: 30 }}
           animate={inView ? { opacity: 1, y: 0 } : {}}
           transition={{ duration: 0.8 }}
-          className="text-center mb-16"
+          className={showHeader ? "text-center mb-16" : "text-center mb-10"}
         >
-          <span className="text-sm tracking-[0.3em] uppercase text-ranczo-terracotta font-medium">
-            Skontaktuj się
-          </span>
-          <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white">
-            Zapraszamy
-          </h2>
-          <div className="mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" />
+          {showHeader && (
+            <>
+              <span className="text-sm tracking-[0.3em] uppercase text-ranczo-terracotta font-medium">
+                Skontaktuj się
+              </span>
+              <h2 className="mt-4 text-4xl md:text-5xl lg:text-6xl font-serif font-bold text-white">
+                Zaplanuj pobyt na Ranczu
+              </h2>
+            </>
+          )}
+          <div className={showHeader ? "mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" : "mx-auto w-16 h-px bg-ranczo-terracotta"} />
         </motion.div>
 
         <div className="grid md:grid-cols-2 gap-12 lg:gap-20">
@@ -85,10 +90,10 @@ export default function Contact() {
                     Telefon
                   </h3>
                   <a
-                    href="tel:+48000000000"
-                    className="text-white/60 hover:text-ranczo-terracotta transition-colors mt-1 block"
+                    href="tel:+48512034668"
+                    className="text-white/70 hover:text-ranczo-sand transition-colors mt-1 block"
                   >
-                    +48 XXX XXX XXX
+                    +48 512 034 668
                   </a>
                 </div>
               </div>
@@ -103,7 +108,7 @@ export default function Contact() {
                   </h3>
                   <a
                     href="mailto:kontakt@ranczo44.pl"
-                    className="text-white/60 hover:text-ranczo-terracotta transition-colors mt-1 block"
+                  className="text-white/70 hover:text-ranczo-sand transition-colors mt-1 block"
                   >
                     kontakt@ranczo44.pl
                   </a>
@@ -121,6 +126,7 @@ export default function Contact() {
                   href="https://www.instagram.com/ranczo44/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Ranczo 44 na Instagramie"
                   className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-ranczo-terracotta hover:border-ranczo-terracotta/30 transition-all duration-300"
                 >
                   <InstagramIcon className="w-5 h-5" />
@@ -129,6 +135,7 @@ export default function Contact() {
                   href="https://www.facebook.com/Ranczo44/"
                   target="_blank"
                   rel="noopener noreferrer"
+                  aria-label="Ranczo 44 na Facebooku"
                   className="w-12 h-12 rounded-full bg-white/5 border border-white/10 flex items-center justify-center text-white/60 hover:text-ranczo-terracotta hover:border-ranczo-terracotta/30 transition-all duration-300"
                 >
                   <FacebookIcon className="w-5 h-5" />
@@ -141,25 +148,24 @@ export default function Contact() {
               <h3 className="font-serif text-lg font-semibold text-white mb-3">
                 Rezerwacja
               </h3>
-              <p className="text-white/50 text-sm mb-4 leading-relaxed">
-                Zarezerwuj pobyt przez jedną z naszych platform lub skontaktuj
-                się bezpośrednio.
+              <p className="text-white/65 text-sm mb-5 leading-relaxed max-w-md">
+                Wybierz domek i termin w formularzu. Jeśli planujesz wydarzenie,
+                odpowiemy z uwzględnieniem okazji i liczby gości.
               </p>
-              <div className="flex flex-wrap gap-3">
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 bg-ranczo-terracotta text-white text-sm font-semibold rounded-full hover:bg-ranczo-terracotta/80 transition-all duration-300"
+              <div className="flex flex-col sm:flex-row flex-wrap gap-3">
+                <Link
+                  href="/rezerwacja"
+                  className="inline-flex min-h-12 items-center justify-center gap-2 px-6 py-3 bg-ranczo-terracotta text-white text-sm font-semibold rounded-full hover:bg-[#b6562f] transition-all duration-300"
                 >
-                  Alohacamp
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
-                <a
-                  href="#"
-                  className="inline-flex items-center gap-2 px-5 py-2.5 border border-white/20 text-white text-sm font-medium rounded-full hover:bg-white/5 transition-all duration-300"
+                  Zapytaj o pobyt
+                  <ArrowRight className="w-4 h-4" />
+                </Link>
+                <Link
+                  href="/wydarzenia#zapytanie-event"
+                  className="inline-flex min-h-12 items-center justify-center px-6 py-3 border border-white/25 text-white text-sm font-medium rounded-full hover:bg-white/8 hover:border-white/40 transition-all duration-300"
                 >
-                  Slowhop
-                  <ExternalLink className="w-3.5 h-3.5" />
-                </a>
+                  Zapytaj o wydarzenie
+                </Link>
               </div>
             </div>
           </motion.div>
@@ -172,7 +178,7 @@ export default function Contact() {
             className="relative rounded-2xl overflow-hidden shadow-xl min-h-[400px]"
           >
             <iframe
-              src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d2586.1234567890!2d21.0972!3d49.4708!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x0%3A0x0!2zNDnCsDI4JzE1LjAiTiAyMcKwMDUnNDkuOSJF!5e0!3m2!1spl!2spl!4v1234567890"
+              src="https://www.google.com/maps?q=U%C5%9Bcie+Gorlickie+44&output=embed"
               width="100%"
               height="100%"
               style={{ border: 0, minHeight: 400 }}

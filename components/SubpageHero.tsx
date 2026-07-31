@@ -11,9 +11,17 @@ interface SubpageHeroProps {
   subtitle: string;
   imageSrc: string;
   className?: string;
+  /** Tone of the section immediately below, so the bottom fade hands off without a seam. */
+  nextSectionTone?: "light" | "dark";
 }
 
-export default function SubpageHero({ title, subtitle, imageSrc, className }: SubpageHeroProps) {
+export default function SubpageHero({
+  title,
+  subtitle,
+  imageSrc,
+  className,
+  nextSectionTone = "light",
+}: SubpageHeroProps) {
   const containerRef = useRef<HTMLDivElement>(null);
 
   const { scrollYProgress } = useScroll({
@@ -40,13 +48,18 @@ export default function SubpageHero({ title, subtitle, imageSrc, className }: Su
           fill
           className="object-cover"
           quality={90}
-          priority
+          loading="eager"
           sizes="100vw"
         />
       </motion.div>
 
       {/* Gradient overlays */}
-      <div className="absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/45 via-ranczo-charcoal/12 to-ranczo-cream z-10" />
+      <div
+        className={cn(
+          "absolute inset-0 bg-gradient-to-b from-ranczo-charcoal/45 via-ranczo-charcoal/12 z-10",
+          nextSectionTone === "dark" ? "to-ranczo-charcoal" : "to-ranczo-cream"
+        )}
+      />
       <div className="absolute inset-0 bg-gradient-to-r from-ranczo-charcoal/20 to-transparent z-10" />
 
       {/* Content */}
