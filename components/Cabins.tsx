@@ -8,7 +8,7 @@ import { ArrowRight, Flame, Trees, Users } from "lucide-react";
 
 const featuredCabins = [
   {
-    name: "Domek nr 2 – Leśny",
+    name: "Domek nr 2",
     desc: "Piętrowe łóżko dla 3 osób i duża rozkładana kanapa dla 2 osób, do tego kominek i własny taras. Dobry wybór dla rodziny lub grupy przyjaciół, która chce być blisko natury.",
     image: "/cabins/cottage-2/cottage-2-cabin-exterior-with-horses.jpg",
     features: [

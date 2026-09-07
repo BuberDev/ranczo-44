@@ -67,7 +67,7 @@ const cabinCollections: CabinCollection[] = [
   {
     id: "cottage-2",
     tabLabel: "Domek 2",
-    eyebrow: "Leśny spokój",
+    eyebrow: "Zielony spokój",
     title: "Domek nr 2",
     description:
       "Kameralny domek otoczony zielenią: piętrowe łóżko dla 3 osób i duża rozkładana kanapa dla 2 osób (do 5 osób łącznie), własny taras, kominek i naturalne detale. Konie często podchodzą tu niemal pod samą werandę.",
@@ -76,6 +76,10 @@ const cabinCollections: CabinCollection[] = [
       {
         src: "/cabins/cottage-2/cottage-2-cabin-exterior-with-horses.jpg",
         alt: "Domek nr 2 z końmi stojącymi przed werandą",
+      },
+      {
+        src: "/cabins/cottage-2/cottage-2-cabin-exterior-wide-view.jpg",
+        alt: "Szeroki widok na Domek nr 2 i jego drewnianą werandę",
       },
       {
         src: "/cabins/cottage-2/cottage-2-horses-by-the-porch.jpg",
@@ -149,7 +153,7 @@ const videoToursByCabin: Record<CabinCollection["id"], VideoTour[]> = {
   "cottage-2": [
     {
       title: "Domek i jego wnętrze",
-      description: "Zobacz taras, kominek i wnętrze Domku nr 2 – Leśnego.",
+      description: "Zobacz taras, kominek i wnętrze Domku nr 2.",
       src: "/videos/cottage-2-tour.mp4",
       poster: "/videos/cottage-2-tour-poster.jpg",
       orientation: "landscape",
