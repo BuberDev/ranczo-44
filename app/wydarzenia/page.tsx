@@ -1,5 +1,6 @@
 import SubpageHero from "@/components/SubpageHero";
 import Events from "@/components/Events";
+import EventsMedia from "@/components/EventsMedia";
 import EventInquiryForm from "@/components/EventInquiryForm";
 import WeddingGallery from "@/components/WeddingGallery";
 
@@ -19,6 +20,7 @@ export default function EventsPage() {
         nextSectionTone="dark"
       />
       <Events showHeader={false} />
+      <EventsMedia />
       <WeddingGallery />
       <EventInquiryForm />
     </main>

@@ -70,8 +70,8 @@ const cabinCollections: CabinCollection[] = [
     eyebrow: "Leśny spokój",
     title: "Domek nr 2",
     description:
-      "Kameralny domek otoczony zielenią, z własnym tarasem, kominkiem i naturalnymi detalami. Konie często podchodzą tu niemal pod samą werandę.",
-    highlights: ["Prywatny taras", "Kominek z kamienia", "Konie tuż obok"],
+      "Kameralny domek otoczony zielenią: piętrowe łóżko dla 3 osób i duża rozkładana kanapa dla 2 osób (do 5 osób łącznie), własny taras, kominek i naturalne detale. Konie często podchodzą tu niemal pod samą werandę.",
+    highlights: ["Kominek z kamienia", "Prywatny taras", "Konie tuż obok"],
     images: [
       {
         src: "/cabins/cottage-2/cottage-2-cabin-exterior-with-horses.jpg",
@@ -121,20 +121,41 @@ const cabinCollections: CabinCollection[] = [
   },
 ];
 
-const videoTours = [
-  {
-    title: "Spacer po wnętrzu",
-    description: "Zobacz układ pomieszczeń i detale Domku nr 4.",
-    src: "/videos/cottage-4-interior-tour.mp4",
-    poster: "/videos/cottage-4-interior-tour-poster.jpg",
-  },
-  {
-    title: "Domek i jego otoczenie",
-    description: "Krótki spacer od wnętrza po basen, pastwisko i konie.",
-    src: "/videos/cottage-4-ranch-tour.mp4",
-    poster: "/videos/cottage-4-ranch-tour-poster.jpg",
-  },
-];
+interface VideoTour {
+  title: string;
+  description: string;
+  src: string;
+  poster: string;
+  orientation: "portrait" | "landscape";
+}
+
+const videoToursByCabin: Record<CabinCollection["id"], VideoTour[]> = {
+  "cottage-4": [
+    {
+      title: "Spacer po wnętrzu",
+      description: "Zobacz układ pomieszczeń i detale Domku nr 4.",
+      src: "/videos/cottage-4-interior-tour.mp4",
+      poster: "/videos/cottage-4-interior-tour-poster.jpg",
+      orientation: "portrait",
+    },
+    {
+      title: "Domek i jego otoczenie",
+      description: "Krótki spacer od wnętrza po basen, pastwisko i konie.",
+      src: "/videos/cottage-4-ranch-tour.mp4",
+      poster: "/videos/cottage-4-ranch-tour-poster.jpg",
+      orientation: "portrait",
+    },
+  ],
+  "cottage-2": [
+    {
+      title: "Domek i jego wnętrze",
+      description: "Zobacz taras, kominek i wnętrze Domku nr 2 – Leśnego.",
+      src: "/videos/cottage-2-tour.mp4",
+      poster: "/videos/cottage-2-tour-poster.jpg",
+      orientation: "landscape",
+    },
+  ],
+};
 
 export default function CabinMedia() {
   const [activeCabinId, setActiveCabinId] = useState<CabinCollection["id"]>("cottage-4");
@@ -146,6 +167,7 @@ export default function CabinMedia() {
     [activeCabinId]
   );
   const selectedImage = activeCabin.images[selectedImageIndex] ?? activeCabin.images[0];
+  const activeVideos = videoToursByCabin[activeCabin.id];
 
   const selectCabin = (id: CabinCollection["id"]) => {
     setActiveCabinId(id);
@@ -307,7 +329,7 @@ export default function CabinMedia() {
       </section>
 
       <section
-        id="filmy-domku-4"
+        id="filmy-domkow"
         className="relative scroll-mt-20 overflow-hidden bg-gradient-to-br from-[#102d20] via-ranczo-charcoal to-[#254d36] py-24 md:py-32"
       >
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,_rgba(201,101,57,0.13),_transparent_30%),radial-gradient(circle_at_90%_75%,_rgba(132,163,107,0.14),_transparent_35%)]" />
@@ -317,16 +339,16 @@ export default function CabinMedia() {
               Poczuj przestrzeń
             </span>
             <h2 className="mt-4 font-serif text-4xl font-bold text-white md:text-5xl">
-              Domek nr 4 na filmie
+              {activeCabin.title} na filmie
             </h2>
             <p className="mt-5 max-w-md leading-relaxed text-white/60">
               Zdjęcia pokazują detale. Filmy pozwalają zobaczyć prawdziwy układ wnętrza
-              i to, jak blisko domku są basen, pastwisko oraz konie.
+              i najbliższe otoczenie domku.
             </p>
           </div>
 
-          <div className="grid gap-6 sm:grid-cols-2">
-            {videoTours.map((video) => (
+          <div className={`grid gap-6 ${activeVideos.length > 1 ? "sm:grid-cols-2" : "sm:max-w-md"}`}>
+            {activeVideos.map((video) => (
               <figure
                 key={video.src}
                 className="overflow-hidden rounded-3xl border border-white/10 bg-white/5 shadow-2xl shadow-black/15"
@@ -336,8 +358,10 @@ export default function CabinMedia() {
                   playsInline
                   preload="none"
                   poster={video.poster}
-                  aria-label={`${video.title} — Domek nr 4`}
-                  className="aspect-[9/16] max-h-[620px] w-full bg-black object-cover"
+                  aria-label={`${video.title} — ${activeCabin.title}`}
+                  className={`max-h-[620px] w-full bg-black object-cover ${
+                    video.orientation === "portrait" ? "aspect-[9/16]" : "aspect-video"
+                  }`}
                 >
                   <source src={video.src} type="video/mp4" />
                   Twoja przeglądarka nie obsługuje odtwarzania wideo.
