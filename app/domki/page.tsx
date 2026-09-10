@@ -14,7 +14,7 @@ export default function CabinsPage() {
       <SubpageHero
         title="Nasze Domki"
         subtitle="Ranczo 44 · Komfortowy wypoczynek"
-        imageSrc="/cabins/cottage-4/cottage-4-ranch-view-with-horses.jpg"
+        imageSrc="/cabins/cottage-4/cottage-4-cabin-exterior-with-horse.jpg"
       />
       <Cabins showHeader={false} />
       <CabinMedia />

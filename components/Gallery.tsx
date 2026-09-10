@@ -23,7 +23,7 @@ const categories: Array<{ id: GalleryCategory; label: string }> = [
 
 const galleryImages: GalleryImage[] = [
   {
-    src: "/cabins/cottage-4/cottage-4-ranch-view-with-horses.jpg",
+    src: "/cabins/cottage-4/cottage-4-cabin-exterior-with-horse.jpg",
     alt: "Domek nr 4 i konie na zielonym pastwisku",
     category: "cabins",
     label: "Domek 4",

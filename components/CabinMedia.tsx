@@ -27,6 +27,10 @@ const cabinCollections: CabinCollection[] = [
     highlights: ["Kamienny kominek", "Zadaszony taras", "Widok na pastwisko"],
     images: [
       {
+        src: "/cabins/cottage-4/cottage-4-cabin-exterior-with-horse.jpg",
+        alt: "Domek nr 4 z koniem na pierwszym planie",
+      },
+      {
         src: "/cabins/cottage-4/cottage-4-ranch-view-with-horses.jpg",
         alt: "Domek nr 4 z widokiem na konie pasące się przed werandą",
       },
@@ -144,7 +148,7 @@ const videoToursByCabin: Record<CabinCollection["id"], VideoTour[]> = {
     },
     {
       title: "Domek i jego otoczenie",
-      description: "Krótki spacer od wnętrza po basen, pastwisko i konie.",
+      description: "Krótki spacer od wnętrza po pastwisko z końmi tuż obok.",
       src: "/videos/cottage-4-ranch-tour.mp4",
       poster: "/videos/cottage-4-ranch-tour-poster.jpg",
       orientation: "portrait",

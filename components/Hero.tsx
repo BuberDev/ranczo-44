@@ -13,7 +13,7 @@ const heroPosterClass =
 const heroVideoClass =
   "absolute inset-0 h-full w-full scale-[1.04] object-cover object-[62%_center] brightness-[0.82] contrast-105 saturate-[0.88] transform-gpu md:scale-[1.18]";
 const heroHighlights = [
-  { icon: House, value: "4 domki", label: "kameralny pobyt" },
+  { icon: House, value: "2 domki", label: "kameralny pobyt" },
   { icon: Star, value: "5/5", label: "opinie Google" },
   { icon: Flame, value: "Balia · basen · konie", label: "atrakcje na miejscu" },
 ];

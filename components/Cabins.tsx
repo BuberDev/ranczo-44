@@ -20,18 +20,13 @@ const featuredCabins = [
   {
     name: "Domek nr 4 – Kowbojski",
     desc: "Rustykalny klimat rancza, salon z kominkiem i zadaszona weranda. Przestrzeń dla rodziny lub grupy przyjaciół.",
-    image: "/cabins/cottage-4/cottage-4-ranch-view-with-horses.jpg",
+    image: "/cabins/cottage-4/cottage-4-cabin-exterior-with-horse.jpg",
     features: [
       { icon: Users, label: "Do 6 osób" },
       { icon: Flame, label: "Kominek" },
       { icon: Trees, label: "Widok na ranczo" },
     ],
   },
-];
-
-const otherCabins = [
-  { name: "Domek 1 – Mustang", capacity: "do 4 osób" },
-  { name: "Domek 3 – Sioux", capacity: "do 6 osób" },
 ];
 
 export default function Cabins({ showHeader = true }: { showHeader?: boolean }) {
@@ -63,7 +58,7 @@ export default function Cabins({ showHeader = true }: { showHeader?: boolean }) 
           )}
           <div className={showHeader ? "mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" : "mx-auto w-16 h-px bg-ranczo-terracotta"} />
           <p className="mt-6 max-w-2xl mx-auto text-ranczo-charcoal/65 leading-relaxed">
-            Cztery kameralne domki z kominkiem i własnym charakterem — dla par,
+            Dwa kameralne domki z kominkiem i własnym charakterem — dla par,
             rodzin oraz grup do 6 osób. Wszystko w otoczeniu beskidzkiej natury.
           </p>
         </motion.div>
@@ -134,20 +129,11 @@ export default function Cabins({ showHeader = true }: { showHeader?: boolean }) 
           <div className="flex flex-col lg:flex-row lg:items-center lg:justify-between gap-6">
             <div>
               <p className="text-xs uppercase tracking-[0.22em] font-semibold text-ranczo-terracotta">
-                W ofercie również
+                Zarezerwuj pobyt
               </p>
-              <div className="mt-3 flex flex-col sm:flex-row sm:items-center gap-2 sm:gap-7">
-                {otherCabins.map((cabin) => (
-                  <div key={cabin.name} className="flex items-center gap-2">
-                    <span className="font-serif text-lg font-semibold text-ranczo-charcoal">
-                      {cabin.name}
-                    </span>
-                    <span className="text-sm text-ranczo-charcoal/55">
-                      {cabin.capacity}
-                    </span>
-                  </div>
-                ))}
-              </div>
+              <p className="mt-3 text-ranczo-charcoal/65">
+                Sprawdź wolne terminy i zarezerwuj wybrany domek.
+              </p>
             </div>
             <Link
               href="/rezerwacja"
