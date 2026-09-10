@@ -20,7 +20,7 @@ const cabinCollections: CabinCollection[] = [
   {
     id: "cottage-4",
     tabLabel: "Domek 4",
-    eyebrow: "Kowbojski charakter",
+    eyebrow: "Rustykalny klimat",
     title: "Domek nr 4",
     description:
       "Ciepłe drewno, kamienny kominek i zadaszony taras tworzą wnętrze, które dobrze wygląda o każdej porze roku. Za oknem — łąka i konie.",

@@ -18,7 +18,7 @@ const featuredCabins = [
     ],
   },
   {
-    name: "Domek nr 4 – Kowbojski",
+    name: "Domek nr 4",
     desc: "Rustykalny klimat rancza, salon z kominkiem i zadaszona weranda. Przestrzeń dla rodziny lub grupy przyjaciół.",
     image: "/cabins/cottage-4/cottage-4-cabin-exterior-with-horse.jpg",
     features: [
