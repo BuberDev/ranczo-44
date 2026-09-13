@@ -8,6 +8,7 @@ import { ArrowRight, Flame, Trees, Users } from "lucide-react";
 
 const featuredCabins = [
   {
+    id: "cottage-2",
     name: "Domek nr 2",
     desc: "Piętrowe łóżko dla 3 osób i duża rozkładana kanapa dla 2 osób, do tego kominek i własny taras. Dobry wybór dla rodziny lub grupy przyjaciół, która chce być blisko natury.",
     image: "/cabins/cottage-2/cottage-2-cabin-exterior-with-horses.jpg",
@@ -18,11 +19,12 @@ const featuredCabins = [
     ],
   },
   {
+    id: "cottage-4",
     name: "Domek nr 4",
     desc: "Rustykalny klimat rancza, salon z kominkiem i zadaszona weranda. Przestrzeń dla rodziny lub grupy przyjaciół.",
     image: "/cabins/cottage-4/cottage-4-cabin-exterior-with-horse.jpg",
     features: [
-      { icon: Users, label: "Do 6 osób" },
+      { icon: Users, label: "Do 4 osób" },
       { icon: Flame, label: "Kominek" },
       { icon: Trees, label: "Widok na ranczo" },
     ],
@@ -59,7 +61,7 @@ export default function Cabins({ showHeader = true }: { showHeader?: boolean }) 
           <div className={showHeader ? "mt-4 mx-auto w-16 h-px bg-ranczo-terracotta" : "mx-auto w-16 h-px bg-ranczo-terracotta"} />
           <p className="mt-6 max-w-2xl mx-auto text-ranczo-charcoal/65 leading-relaxed">
             Dwa kameralne domki z kominkiem i własnym charakterem — dla par,
-            rodzin oraz grup do 6 osób. Wszystko w otoczeniu beskidzkiej natury.
+            rodzin oraz grup do 5 osób. Wszystko w otoczeniu beskidzkiej natury.
           </p>
         </motion.div>
 
@@ -109,7 +111,7 @@ export default function Cabins({ showHeader = true }: { showHeader?: boolean }) 
                 </div>
 
                 <Link
-                  href="/domki"
+                  href={`/domki?domek=${cabin.id}#galeria-domkow`}
                   className="mt-6 inline-flex items-center gap-2 text-sm font-semibold text-ranczo-green hover:text-ranczo-terracotta transition-colors"
                 >
                   Zobacz zdjęcia i szczegóły

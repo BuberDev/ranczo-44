@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import Image from "next/image";
 import { AnimatePresence, motion } from "framer-motion";
 import { Expand, Flame, Mountain, Trees } from "lucide-react";
@@ -169,6 +169,13 @@ export default function CabinMedia() {
   const [activeCabinId, setActiveCabinId] = useState<CabinCollection["id"]>("cottage-4");
   const [selectedImageIndex, setSelectedImageIndex] = useState(0);
   const [lightboxIndex, setLightboxIndex] = useState<number | null>(null);
+
+  useEffect(() => {
+    const requested = new URLSearchParams(window.location.search).get("domek");
+    if (requested === "cottage-2" || requested === "cottage-4") {
+      setActiveCabinId(requested);
+    }
+  }, []);
 
   const activeCabin = useMemo(
     () => cabinCollections.find((cabin) => cabin.id === activeCabinId) ?? cabinCollections[0],
