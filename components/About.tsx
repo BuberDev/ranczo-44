@@ -44,14 +44,19 @@ export default function About({ showHeader = true }: { showHeader?: boolean }) {
             transition={{ duration: 0.8, delay: 0.2 }}
             className="relative"
           >
-            <div className="relative aspect-[4/5] rounded-2xl overflow-hidden shadow-2xl">
-              <Image
-                src="/photos_ranczo_44/wooden-cabin-on-misty-ranch-hillside.jpeg"
-                alt="Drewniany domek na Ranczo 44 z zielonymi okiennicami"
-                fill
-                className="object-cover hover:scale-105 transition-transform duration-700"
-                sizes="(max-width: 1024px) 100vw, 50vw"
-              />
+            <div className="relative aspect-[4/3] rounded-2xl overflow-hidden shadow-2xl">
+              <video
+                autoPlay
+                muted
+                loop
+                playsInline
+                preload="metadata"
+                poster="/videos/ranch-aerial-poster.jpg"
+                className="absolute inset-0 h-full w-full object-cover object-[center_75%]"
+                aria-label="Ranczo 44 z lotu ptaka — pastwisko, basen i beskidzkie lasy"
+              >
+                <source src="/videos/ranch-aerial.mp4" type="video/mp4" />
+              </video>
             </div>
             {/* Floating accent image */}
             <motion.div

@@ -25,7 +25,8 @@ const attractions = [
     icon: Flame,
     title: "Cedrowa bania",
     desc: "Zewnętrzna balia z cedrowego drewna — aromatyczna kąpiel pod gwiazdami z dźwiękami natury w tle.",
-    image: "/attractions/hot-tub.jpg",
+    image: "/attractions/hot-tub-ranczo-44.jpg",
+    imagePosition: "object-[center_75%]",
   },
   {
     icon: Fence,
@@ -49,7 +50,8 @@ const attractions = [
     icon: Tent,
     title: "Ognisko i grill",
     desc: "Każdy wieczór może stać się wyjątkowy — iskry lecą w niebo, kiełbaski skwierczą, a gwiazdy świecą jak nigdzie indziej.",
-    image: "/attractions/campfire-grill.jpg",
+    image: "/attractions/campfire-ranczo-44.jpg",
+    imagePosition: "object-[center_85%]",
   },
   {
     icon: Sparkles,
@@ -116,7 +118,7 @@ export default function Attractions({ showHeader = true }: { showHeader?: boolea
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className={`object-cover ${"imagePosition" in item ? item.imagePosition : ""} group-hover:scale-110 transition-transform duration-700`}
                   sizes="(max-width: 640px) 100vw, (max-width: 1280px) 50vw, 25vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ranczo-charcoal/90 via-ranczo-charcoal/20 to-transparent" />
