@@ -22,7 +22,8 @@ const eventTypes = [
     icon: Fence,
     title: "Aktywności z końmi i warsztaty",
     desc: "Kontakt ze zwierzętami i warsztaty terenowe dla grup — naturalne uzupełnienie pobytu oraz spokojnej integracji z dala od miasta.",
-    image: "/photos_ranczo_44/horses-standing-by-cabin-porch.jpg",
+    image: "/events/horse-workshop-ranczo-44.jpg",
+    imagePosition: "object-[center_40%]",
   },
 ];
 
@@ -73,7 +74,7 @@ export default function Events({ showHeader = true }: { showHeader?: boolean }) 
                   src={item.image}
                   alt={item.title}
                   fill
-                  className="object-cover group-hover:scale-110 transition-transform duration-700"
+                  className={`object-cover ${"imagePosition" in item ? item.imagePosition : ""} group-hover:scale-110 transition-transform duration-700`}
                   sizes="(max-width: 640px) 100vw, (max-width: 1024px) 50vw, 33vw"
                 />
                 <div className="absolute inset-0 bg-gradient-to-t from-ranczo-charcoal/90 via-ranczo-charcoal/20 to-transparent" />

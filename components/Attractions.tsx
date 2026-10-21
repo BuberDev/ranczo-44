@@ -32,7 +32,8 @@ const attractions = [
     icon: Fence,
     title: "Konie na pastwisku",
     desc: "Loki i Thorn, nasze konie, są stałymi rezydentami Rancza. Możesz je nakarmić marchewką prosto z ręki.",
-    image: "/attractions/horses.jpg",
+    image: "/attractions/horses-ranczo-44.jpg",
+    imagePosition: "object-[center_85%]",
   },
   {
     icon: TreePine,
@@ -44,7 +45,7 @@ const attractions = [
     icon: Utensils,
     title: "Domowe smaki",
     desc: "Domowe przetwory, lokalne sery, wędzony pstrąg. Śniadanie z widokiem na beskidzkie szczyty to czysta przyjemność.",
-    image: "/attractions/breakfast.jpg",
+    image: "/attractions/homemade-bread.jpg",
   },
   {
     icon: Tent,
@@ -57,7 +58,8 @@ const attractions = [
     icon: Sparkles,
     title: "Masaże Lomi Lomi",
     desc: "Głęboki, kojący masaż w spokojnym rytmie, który pomaga odpuścić napięcie i wejść w prawdziwy tryb odpoczynku.",
-    image: "/attractions/lomi-lomi-massage.jpg",
+    image: "/attractions/massage.jpg",
+    imagePosition: "object-[center_35%]",
   },
   {
     icon: Leaf,
