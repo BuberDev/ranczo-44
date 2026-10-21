@@ -62,7 +62,7 @@ export default function EventInquiryForm() {
   };
 
   const inputClass =
-    "w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-ranczo-terracotta/60 focus:border-ranczo-terracotta/50 transition-all duration-300 text-sm";
+    "field-dark w-full bg-white/5 border border-white/15 rounded-xl px-4 py-3 text-white placeholder-white/40 focus:outline-none focus:ring-2 focus:ring-ranczo-terracotta/60 focus:border-ranczo-terracotta/50 transition-all duration-300 text-sm";
 
   const labelClass = "text-xs font-semibold tracking-widest uppercase text-ranczo-sand/70 mb-2 block";
 
