@@ -32,7 +32,9 @@ export default function Celebrations() {
               alt="Para młoda z koniem na Ranczo 44"
               fill
               className="object-cover"
-              sizes="(max-width: 1024px) 58vw, 32vw"
+              // Poziome zdjęcie 3:2 w wysokiej ramce (520/640px): object-cover
+              // skaluje je do wysokości, więc wyświetlana szerokość to wysokość × 1,5.
+              sizes="(max-width: 639px) 780px, 960px"
             />
           </div>
           <div className="relative overflow-hidden rounded-[1.75rem]">
@@ -50,7 +52,7 @@ export default function Celebrations() {
               alt="Nowożeńcy na beskidzkiej łące"
               fill
               className="object-cover"
-              sizes="(max-width: 1024px) 42vw, 23vw"
+              sizes="(max-width: 639px) 390px, 470px"
             />
           </div>
         </div>
